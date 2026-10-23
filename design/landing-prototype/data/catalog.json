@@ -1,0 +1,33 @@
+{
+  "currency": "IDR",
+  "vehicles": [
+    { "id": "city", "label": "City car EV", "tireSize": "175/65 R15", "defaultTire": "standard", "batteryKwh": 30, "port": "CCS2" },
+    { "id": "suv", "label": "Compact SUV EV", "tireSize": "215/55 R17", "defaultTire": "silent", "batteryKwh": 60, "port": "CCS2" },
+    { "id": "mpv", "label": "MPV EV", "tireSize": "225/55 R18", "defaultTire": "silent", "batteryKwh": 70, "port": "CCS2" },
+    { "id": "sedan", "label": "Sedan EV", "tireSize": "235/45 R18", "defaultTire": "runflat", "batteryKwh": 75, "port": "GB/T" }
+  ],
+  "tires": [
+    { "id": "patch", "label": "Kit Tambal", "kind": "repair", "price": 75000, "allowedOn": ["flat"] },
+    { "id": "standard", "label": "Ban Standar EV", "kind": "tire", "pricePerSize": { "175/65 R15": 850000, "215/55 R17": 1450000, "225/55 R18": 1700000, "235/45 R18": 1800000 } },
+    { "id": "silent", "label": "Ban Silent/Foam", "kind": "tire", "pricePerSize": { "215/55 R17": 1950000, "225/55 R18": 2250000, "235/45 R18": 2350000 } },
+    { "id": "runflat", "label": "Ban Run-flat", "kind": "tire", "pricePerSize": { "215/55 R17": 2400000, "235/45 R18": 2800000 } },
+    { "id": "own-spare", "label": "Ban serep milik sendiri", "kind": "install", "price": 0 }
+  ],
+  "connectors": ["CCS2", "Type 2", "GB/T", "CHAdeMO"],
+  "fees": {
+    "tireCallout": 100000,
+    "tireInstallPerWheel": 60000,
+    "tpmsReset": 50000,
+    "chargingVanVisit": 150000,
+    "chargingValetTrip": 125000,
+    "energyPerKwh": 3500,
+    "nightSurchargePct": 20,
+    "comboDiscountPct": 10
+  },
+  "zones": [
+    { "id": "z1", "label": "Jakarta Selatan", "inZone": true },
+    { "id": "z2", "label": "Jakarta Pusat", "inZone": true },
+    { "id": "z3", "label": "BSD / Tangerang Selatan", "inZone": true },
+    { "id": "out", "label": "Di luar zona (Jabodetabek lain)", "inZone": false, "extraFee": 75000 }
+  ]
+}

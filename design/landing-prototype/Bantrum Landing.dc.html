@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Bantrum — Ban Panggilan &amp; Charging EV di Jabodetabek</title>
+<meta name="description" content="Bantrum: ban panggilan khusus mobil listrik dan charging portable di Jabodetabek. Rakit kebutuhanmu, lihat harga sebelum bayar, teknisi datang ke lokasi."></meta>
+<meta property="og:title" content="Bantrum — Siaga ban, siap setrum."></meta>
+<meta property="og:description" content="Ban panggilan & charging portable untuk mobil listrik di Jabodetabek."></meta>
+<meta property="og:type" content="website"></meta>
+<link rel="preconnect" href="https://fonts.googleapis.com"></link>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap"></link>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Bantrum","slogan":"Siaga ban, siap setrum.","areaServed":"Jabodetabek","makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ban panggilan khusus EV"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Charging portable EV"}}]}</script>
+<style>
+:root{--bg:#f3f5f7;--surface:#ffffff;--sunk:#e8ecf0;--line:#d3d9e0;--fg:#16202b;--muted:#5a6776;--accent:#e0a100;--volt:#1f6feb;--good:#1a8a55;--warn:#c2410c;--ink:#16202b;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f151c;--surface:#17202a;--sunk:#1d2834;--line:#2c3a48;--fg:#e6ecf2;--muted:#93a2b2;--accent:#f2b928;--volt:#6aa6ff;--good:#4cc98a;--warn:#ff8a57;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f151c;--surface:#17202a;--sunk:#1d2834;--line:#2c3a48;--fg:#e6ecf2;--muted:#93a2b2;--accent:#f2b928;--volt:#6aa6ff;--good:#4cc98a;--warn:#ff8a57;color-scheme:dark}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--volt)}a:hover{color:var(--fg)}
+button{font-family:inherit}
+:focus-visible{outline:3px solid var(--volt);outline-offset:2px}
+input[type=range]{accent-color:var(--volt)}
+@keyframes blink{0%,100%{box-shadow:0 0 0 0 color-mix(in oklab,var(--accent) 70%,transparent)}50%{box-shadow:0 0 0 10px color-mix(in oklab,var(--accent) 0%,transparent)}}
+@keyframes shake-0{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
+@keyframes shake-1{0%,100%{transform:none}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
+@keyframes snap-0{0%{transform:scale(1.3) rotate(-120deg)}70%{transform:scale(.94) rotate(12deg)}100%{transform:none}}
+@keyframes snap-1{0%{transform:scale(1.3) rotate(-120deg)}70%{transform:scale(.94) rotate(12deg)}100%{transform:none}}
+@keyframes drive-0{from{transform:translateX(-70%);opacity:0}to{transform:none;opacity:1}}
+@keyframes drive-1{from{transform:translateX(-70%);opacity:0}to{transform:none;opacity:1}}
+@keyframes driveout{0%{transform:none}100%{transform:translateX(130%);opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</helmet>
+
+<div id="top" style="min-height:100vh;background:var(--bg);color:var(--fg);padding-bottom:{{ rootPadBottom }}">
+
+<header style="position:sticky;top:0;z-index:40;background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
+  <div style="max-width:1200px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <a href="#top" aria-label="Bantrum, ke atas" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg)">
+      <span style="width:28px;height:28px;background:var(--accent);border:2px solid var(--ink);border-radius:4px;transform:rotate(-10deg) skewX(-6deg);display:flex;align-items:center;justify-content:center;font:800 15px 'Archivo',sans-serif;color:var(--ink)">B</span>
+      <span style="font:800 22px 'Archivo',sans-serif;letter-spacing:-0.02em">Bantrum</span>
+    </a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Menu utama" style="display:flex;gap:24px;font-size:15px;font-weight:500">
+        <a href="#rakit" style="color:var(--fg);text-decoration:none">Rakit &amp; Pesan</a>
+        <a href="#cara-kerja" style="color:var(--fg);text-decoration:none">Cara kerja</a>
+        <a href="#harga" style="color:var(--fg);text-decoration:none">Harga</a>
+        <a href="#faq" style="color:var(--fg);text-decoration:none">FAQ</a>
+      </nav>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" title="{{ themeLabel }}" style="min-width:44px;height:44px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer;font:500 13px 'IBM Plex Mono',monospace">{{ themeShort }}</button>
+      <a href="#rakit" aria-label="Keranjang, {{ cartCount }} item" style="min-width:44px;height:44px;box-sizing:border-box;padding:0 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;display:flex;align-items:center;gap:8px;text-decoration:none;font-size:14px">
+        <span aria-hidden="true" style="width:14px;height:11px;border:2px solid var(--fg);border-top-width:4px;border-radius:2px"></span>
+        <span style="font:600 14px 'IBM Plex Mono',monospace">{{ cartCount }}</span>
+      </a>
+      <button onClick="{{ goGame }}" style="height:44px;padding:0 16px;border:2px solid var(--ink);background:var(--accent);color:var(--ink);border-radius:8px;cursor:pointer;font:700 15px 'Archivo',sans-serif">Pesan sekarang</button>
+    </div>
+  </div>
+</header>
+
+<section aria-labelledby="hero-title" style="max-width:1200px;margin:0 auto;padding:48px 20px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;align-items:center">
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;gap:10px;font:500 13px 'IBM Plex Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">
+      <span style="width:10px;height:10px;background:var(--accent);transform:rotate(45deg)"></span>
+      <span>Siaga ban, siap setrum · Jabodetabek</span>
+    </div>
+    <h1 id="hero-title" style="margin:0;font:800 clamp(36px,5.4vw,60px)/1.02 'Archivo',sans-serif;letter-spacing:-0.03em;text-wrap:balance">Ban kempes? Baterai lemes? Rakit solusinya, kami yang datang.</h1>
+    <p style="margin:0;font-size:18px;line-height:1.55;color:var(--muted);max-width:520px;text-wrap:pretty">Ban panggilan khusus mobil listrik dan charging portable. Pilih mobilmu, pasang ban dan colokan di layar, lihat harganya sebelum bayar.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <button onClick="{{ goGame }}" style="min-height:48px;padding:0 22px;border:2px solid var(--ink);background:var(--accent);color:var(--ink);border-radius:8px;cursor:pointer;font:700 17px 'Archivo',sans-serif">Mulai rakit</button>
+      <a href="#harga" style="min-height:48px;box-sizing:border-box;padding:0 22px;border:2px solid var(--fg);color:var(--fg);border-radius:8px;display:flex;align-items:center;text-decoration:none;font:700 17px 'Archivo',sans-serif">Lihat harga</a>
+    </div>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="font:600 13px 'IBM Plex Mono',monospace;color:var(--muted)">COBA DULU</span>
+      <span style="font:500 13px 'IBM Plex Mono',monospace;color:var(--muted)">215/55 R17</span>
+    </div>
+    <div style="position:relative;background:var(--sunk);border-radius:10px;padding:8px 8px 0">
+      <div style="position:relative;width:100%;aspect-ratio:2/1">
+        <svg viewBox="0 0 400 200" style="width:100%;height:100%;display:block" aria-hidden="true">
+          <line x1="0" y1="160" x2="400" y2="160" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 6"></line>
+          <g transform="translate(0,20)">
+            <path d="M24,112 L24,82 Q26,70 46,68 L112,64 L156,26 L330,26 L366,62 L368,66 Q376,70 376,82 L376,112 Z" fill="var(--surface)" stroke="var(--fg)" stroke-width="2" stroke-linejoin="round"></path>
+            <path d="M126,62 L162,33 L324,33 L350,58 Z" fill="var(--sunk)" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round"></path>
+            <line x1="243" y1="33" x2="243" y2="60" stroke="var(--fg)" stroke-width="1.5"></line>
+            <rect x="24" y="74" width="16" height="7" rx="2" fill="var(--surface)" stroke="var(--fg)" stroke-width="1.5"></rect>
+            <circle cx="95" cy="112" r="34" fill="var(--sunk)"></circle>
+            <circle cx="305" cy="112" r="34" fill="var(--sunk)"></circle>
+            <circle cx="305" cy="112" r="28" fill="#1b232d" stroke="var(--fg)" stroke-width="2"></circle>
+            <circle cx="305" cy="112" r="12" fill="var(--line)"></circle>
+            <ellipse cx="95" cy="118" rx="30" ry="22" fill="#1b232d" stroke="var(--fg)" stroke-width="2"></ellipse>
+          </g>
+        </svg>
+        <button data-slot="hero" onClick="{{ hero.onClick }}" aria-label="{{ hero.aria }}" style="position:absolute;left:23.75%;top:66%;width:max(48px,16%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:3px {{ hero.bstyle }} {{ hero.bcolor }};background:{{ hero.bg }};animation:{{ hero.anim }};cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center">
+          <span style="background:{{ hero.badgeBg }};color:var(--ink);padding:2px 6px;border-radius:4px;font:700 11px 'IBM Plex Sans',sans-serif">{{ hero.badge }}</span>
+        </button>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <sc-if value="{{ hero.notDone }}" hint-placeholder-val="{{ true }}">
+        <button onPointerDown="{{ hero.onDrag }}" onClick="{{ hero.onPick }}" aria-pressed="{{ hero.picked }}" style="touch-action:none;min-height:48px;padding:6px 14px 6px 8px;border:2px solid {{ hero.chipBorder }};background:var(--surface);color:var(--fg);border-radius:10px;cursor:grab;display:flex;align-items:center;gap:10px">
+          <span aria-hidden="true" style="width:30px;height:30px;border-radius:50%;background:#1b232d;border:2px solid var(--fg);box-sizing:border-box;display:flex;align-items:center;justify-content:center"><span style="width:10px;height:10px;border-radius:50%;background:var(--line)"></span></span>
+          <span style="display:flex;flex-direction:column;align-items:flex-start;gap:2px"><span style="font-weight:600;font-size:14px">Ban Silent/Foam</span><span style="font:500 12px 'IBM Plex Mono',monospace;color:var(--muted)">215/55 R17</span></span>
+        </button>
+      </sc-if>
+      <p style="margin:0;font-size:15px;line-height:1.45;color:{{ hero.textColor }};flex:1;min-width:180px">{{ hero.text }}</p>
+      <sc-if value="{{ hero.done }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ goGame }}" style="min-height:44px;padding:0 16px;border:2px solid var(--ink);background:var(--accent);color:var(--ink);border-radius:8px;cursor:pointer;font:700 15px 'Archivo',sans-serif">Rakit mobilmu</button>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<section id="rakit" aria-labelledby="rakit-title" style="scroll-margin-top:72px;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div style="max-width:1200px;margin:0 auto;padding:40px 20px 48px;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="font:600 13px 'IBM Plex Mono',monospace;color:var(--muted)">MINI-GAME</span>
+        <h2 id="rakit-title" style="margin:0;font:800 clamp(30px,4vw,42px)/1.05 'Archivo',sans-serif;letter-spacing:-0.02em">Rakit &amp; Pesan</h2>
+      </div>
+      <span style="font:500 12px 'IBM Plex Mono',monospace;padding:4px 8px;border:1px dashed var(--muted);border-radius:4px;color:var(--muted)">Mode demo · harga contoh</span>
+    </div>
+
+    <sc-if value="{{ isLoading }}" hint-placeholder-val="{{ false }}">
+      <div role="status" style="padding:40px;text-align:center;color:var(--muted);background:var(--sunk);border-radius:12px">Memuat layanan…</div>
+    </sc-if>
+    <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+      <div role="alert" style="padding:28px;background:var(--sunk);border-radius:12px;display:flex;flex-direction:column;gap:12px;align-items:flex-start">
+        <strong style="font:700 20px 'Archivo',sans-serif">Data layanan belum bisa dimuat.</strong>
+        <span style="color:var(--muted)">Periksa koneksi lalu coba lagi. Kamu juga bisa pesan langsung via WhatsApp: <span style="font-family:'IBM Plex Mono',monospace;color:var(--fg);user-select:all">0812-0000-0000</span></span>
+        <button onClick="{{ retryLoad }}" style="min-height:44px;padding:0 18px;border:2px solid var(--ink);background:var(--accent);color:var(--ink);border-radius:8px;cursor:pointer;font:700 15px 'Archivo',sans-serif">Coba lagi</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showResume }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:14px 16px;border:2px solid var(--accent);background:color-mix(in oklab,var(--accent) 12%,var(--surface));border-radius:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between">
+        <span style="font-weight:600">Lanjutkan rakitanmu? <span style="font-weight:400;color:var(--muted)">{{ resumeText }}</span></span>
+        <div style="display:flex;gap:8px">
+          <button onClick="{{ resumeYes }}" style="min-height:44px;padding:0 16px;border:2px solid var(--ink);background:var(--accent);color:var(--ink);border-radius:8px;cursor:pointer;font-weight:700">Lanjutkan</button>
+          <button onClick="{{ resumeNo }}" style="min-height:44px;padding:0 16px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer">Mulai baru</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showGame }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span style="font:600 14px 'IBM Plex Sans',sans-serif">1. Pilih mobilmu</span>
+          <div role="radiogroup" aria-label="Segmen mobil" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+            <sc-for list="{{ vehicleCards }}" as="v" hint-placeholder-count="4">
+              <button role="radio" aria-checked="{{ v.selected }}" onClick="{{ v.onClick }}" style="min-height:44px;padding:10px 12px;border:2px solid {{ v.border }};background:{{ v.bg }};color:var(--fg);border-radius:10px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left">
+                <svg viewBox="0 0 400 150" style="width:100%;height:auto;max-height:56px" aria-hidden="true"><path d="{{ v.body }}" fill="var(--surface)" stroke="var(--fg)" stroke-width="5" stroke-linejoin="round"></path><circle cx="95" cy="112" r="28" fill="var(--fg)"></circle><circle cx="305" cy="112" r="28" fill="var(--fg)"></circle></svg>
+                <span style="font:700 15px 'Archivo',sans-serif">{{ v.label }}</span>
+                <span style="font:500 12px 'IBM Plex Mono',monospace;color:var(--muted)">{{ v.spec }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <label style="display:flex;flex-direction:column;gap:4px;max-width:420px">
+            <span style="font-size:14px;color:var(--muted)">Merek &amp; model mobilmu (opsional)</span>
+            <input value="{{ modelText }}" onChange="{{ onModelText }}" placeholder="Ketik merek dan model" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Sans',sans-serif;width:100%;box-sizing:border-box"></input>
+          </label>
+        </div>
+
+        <div style="display:grid;grid-template-columns:{{ gridCols }};gap:16px;align-items:start">
+
+          <div style="order:{{ rackOrder }};background:var(--sunk);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <span style="font:700 16px 'Archivo',sans-serif">Rak Suku Cadang</span>
+            </div>
+            <div role="tablist" aria-label="Jenis suku cadang" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--surface);padding:4px;border-radius:8px">
+              <sc-for list="{{ rackTabs }}" as="t" hint-placeholder-count="2">
+                <button role="tab" aria-selected="{{ t.active }}" onClick="{{ t.onClick }}" style="min-height:40px;border:0;border-radius:6px;background:{{ t.bg }};color:{{ t.fg }};cursor:pointer;font-weight:600;font-size:14px">{{ t.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:{{ rackDir }};gap:8px;overflow-x:{{ rackOverflow }};padding-bottom:4px;scroll-snap-type:x mandatory">
+              <sc-for list="{{ rackItems }}" as="it" hint-placeholder-count="5">
+                <button onPointerDown="{{ it.onDrag }}" onClick="{{ it.onClick }}" aria-pressed="{{ it.selected }}" aria-label="{{ it.aria }}" style="touch-action:none;flex:0 0 {{ it.basis }};scroll-snap-align:start;min-height:56px;padding:10px 12px;border:2px solid {{ it.border }};background:var(--surface);color:var(--fg);border-radius:10px;cursor:grab;display:flex;align-items:center;gap:10px;text-align:left;opacity:{{ it.op }};box-sizing:border-box">
+                  <span aria-hidden="true" style="flex:0 0 auto;width:30px;height:30px;border-radius:{{ it.iconRadius }};background:{{ it.iconBg }};border:2px solid var(--fg);box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:700 10px 'IBM Plex Mono',monospace;color:#fff">{{ it.glyph }}</span>
+                  <span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+                    <span style="font-weight:600;font-size:14px">{{ it.label }}</span>
+                    <span style="font:500 12px 'IBM Plex Mono',monospace;color:var(--muted)">{{ it.sub }}</span>
+                    <span style="font:600 12px 'IBM Plex Mono',monospace;color:{{ it.priceColor }}">{{ it.price }}</span>
+                  </span>
+                </button>
+              </sc-for>
+            </div>
+            <p style="margin:0;font-size:13px;line-height:1.45;color:var(--muted)">{{ rackHint }}</p>
+          </div>
+
+          <div style="order:{{ stageOrder }};display:flex;flex-direction:column;gap:12px;min-width:0">
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between">
+              <div role="group" aria-label="Sisi mobil" style="display:flex;gap:4px;background:var(--sunk);padding:4px;border-radius:8px">
+                <sc-for list="{{ sideTabs }}" as="t" hint-placeholder-count="2">
+                  <button aria-pressed="{{ t.active }}" onClick="{{ t.onClick }}" style="min-height:36px;padding:0 12px;border:0;border-radius:6px;background:{{ t.bg }};color:{{ t.fg }};cursor:pointer;font-weight:600;font-size:13px">{{ t.label }}</button>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px">
+                <button onClick="{{ undo }}" disabled="{{ undoDisabled }}" style="min-height:44px;padding:0 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer;font-size:13px;opacity:{{ undoOp }}">Undo</button>
+                <button onClick="{{ reset }}" style="min-height:44px;padding:0 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer;font-size:13px">Reset</button>
+                <button onClick="{{ quickFill }}" style="min-height:44px;padding:0 12px;border:1px solid var(--volt);background:var(--surface);color:var(--volt);border-radius:8px;cursor:pointer;font-size:13px;font-weight:600">Isi cepat untuk saya</button>
+                <button onClick="{{ toggleSound }}" aria-pressed="{{ sound }}" style="min-height:44px;padding:0 12px;border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:8px;cursor:pointer;font:500 12px 'IBM Plex Mono',monospace">{{ soundLabel }}</button>
+              </div>
+            </div>
+
+            <div style="position:relative;background:var(--sunk);border-radius:12px;padding:16px 16px 28px;overflow:hidden;animation:{{ stageShake }}">
+              <sc-if value="{{ noVehicle }}" hint-placeholder-val="{{ true }}">
+                <div style="aspect-ratio:2/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;border:2px dashed var(--line);border-radius:10px;text-align:center;padding:16px">
+                  <div aria-hidden="true" style="width:70%;max-width:340px;height:10px;border-top:2px dashed var(--muted)"></div>
+                  <span style="font:700 18px 'Archivo',sans-serif">Garasi masih kosong</span>
+                  <span style="color:var(--muted);font-size:15px">Pilih mobilmu dulu untuk mulai merakit.</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ hasVehicle }}" hint-placeholder-val="{{ false }}">
+                <div style="position:relative;width:100%;max-width:640px;margin:0 auto;aspect-ratio:2/1;animation:{{ driveAnim }}">
+                  <svg viewBox="0 0 400 200" style="width:100%;height:100%;display:block;overflow:visible;transform:{{ carFlip }}" aria-hidden="true">
+                    <line x1="-40" y1="160" x2="440" y2="160" stroke="var(--line)" stroke-width="2" stroke-dasharray="6 6"></line>
+                    <g transform="translate(0,20)">
+                      <path d="{{ car.beam }}" fill="var(--accent)" style="opacity:{{ car.beamOp }};transition:opacity .4s"></path>
+                      <path d="{{ car.body }}" fill="var(--surface)" stroke="var(--fg)" stroke-width="2" stroke-linejoin="round"></path>
+                      <path d="{{ car.win }}" fill="var(--sunk)" stroke="var(--fg)" stroke-width="1.5" stroke-linejoin="round"></path>
+                      <line x1="{{ car.pillarX }}" y1="{{ car.pillarY1 }}" x2="{{ car.pillarX }}" y2="{{ car.pillarY2 }}" stroke="var(--fg)" stroke-width="1.5"></line>
+                      <rect x="24" y="{{ car.lightY }}" width="16" height="7" rx="2" fill="{{ car.lightFill }}" stroke="var(--fg)" stroke-width="1.5"></rect>
+                      <rect x="366" y="{{ car.tailY }}" width="10" height="8" rx="2" fill="var(--warn)" stroke="var(--fg)" stroke-width="1.5"></rect>
+                      <line x1="60" y1="98" x2="340" y2="98" stroke="var(--line)" stroke-width="1.5"></line>
+                      <circle cx="95" cy="112" r="34" fill="var(--sunk)"></circle>
+                      <circle cx="305" cy="112" r="34" fill="var(--sunk)"></circle>
+                      <circle cx="95" cy="112" r="28" fill="#1b232d" stroke="var(--fg)" stroke-width="2"></circle>
+                      <circle cx="95" cy="112" r="12" fill="var(--line)"></circle>
+                      <circle cx="305" cy="112" r="28" fill="#1b232d" stroke="var(--fg)" stroke-width="2"></circle>
+                      <circle cx="305" cy="112" r="12" fill="var(--line)"></circle>
+                    </g>
+                  </svg>
+                  <sc-for list="{{ wheelsView }}" as="wh" hint-placeholder-count="2">
+                    <div style="position:absolute;left:{{ wh.left }};top:66%;width:max(48px,16%);aspect-ratio:1;transform:translate(-50%,-50%)">
+                      <button data-slot="{{ wh.id }}" onClick="{{ wh.onClick }}" aria-label="{{ wh.aria }}" aria-expanded="{{ wh.editing }}" style="width:100%;height:100%;border-radius:50%;border:3px {{ wh.bstyle }} {{ wh.bcolor }};background:{{ wh.bg }};opacity:{{ wh.op }};animation:{{ wh.anim }};cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:opacity .15s,background .15s;touch-action:manipulation">
+                        <sc-if value="{{ wh.showBadge }}" hint-placeholder-val="{{ false }}">
+                          <span style="background:{{ wh.badgeBg }};color:{{ wh.badgeFg }};padding:2px 6px;border-radius:4px;font:700 11px 'IBM Plex Sans',sans-serif;pointer-events:none">{{ wh.badge }}</span>
+                        </sc-if>
+                      </button>
+                      <sc-if value="{{ wh.hasItem }}" hint-placeholder-val="{{ false }}">
+                        <div style="position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:2px 2px 2px 8px;background:var(--surface);border:1px solid var(--good);border-radius:6px;white-space:nowrap;animation:rise .3s ease-out">
+                          <span style="font-size:11px;font-weight:600">{{ wh.itemShort }}</span>
+                          <span style="font:500 11px 'IBM Plex Mono',monospace;color:var(--muted)">{{ wh.itemPrice }}</span>
+                          <button onClick="{{ wh.onRemove }}" aria-label="Lepas item dari roda {{ wh.name }}" style="width:28px;height:28px;border:0;background:transparent;color:var(--fg);cursor:pointer;font-size:16px;line-height:1">×</button>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                  <button data-slot="port" onClick="{{ port.onClick }}" aria-label="{{ port.aria }}" style="position:absolute;left:{{ port.left }};top:{{ port.top }};width:max(44px,11%);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:8px;border:2px {{ port.bstyle }} {{ port.bcolor }};background:{{ port.bg }};opacity:{{ port.op }};animation:{{ port.anim }};cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;font:600 10px 'IBM Plex Mono',monospace;color:{{ port.fg }};transition:background .2s,opacity .15s">{{ port.text }}</button>
+                </div>
+              </sc-if>
+            </div>
+
+            <div role="status" aria-live="polite" style="display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:8px;background:var(--sunk);min-height:24px">
+              <span aria-hidden="true" style="flex:0 0 auto;width:20px;height:20px;border-radius:4px;background:{{ msgColor }};color:#fff;display:flex;align-items:center;justify-content:center;font:700 12px 'IBM Plex Mono',monospace">{{ msgIcon }}</span>
+              <span style="font-size:15px;line-height:1.4;color:var(--fg)">{{ msg }}</span>
+            </div>
+
+            <sc-if value="{{ editing.open }}" hint-placeholder-val="{{ false }}">
+              <div role="dialog" aria-label="Kondisi roda {{ editing.name }}" style="border:2px solid var(--fg);background:var(--surface);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:12px;animation:rise .2s ease-out">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                  <strong style="font:700 16px 'Archivo',sans-serif">Roda {{ editing.name }}</strong>
+                  <button onClick="{{ closeEditor }}" aria-label="Tutup" style="width:44px;height:44px;border:0;background:transparent;color:var(--fg);font-size:22px;cursor:pointer">×</button>
+                </div>
+                <div role="radiogroup" aria-label="Kondisi" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+                  <sc-for list="{{ editing.conds }}" as="cd" hint-placeholder-count="3">
+                    <button role="radio" aria-checked="{{ cd.active }}" onClick="{{ cd.onClick }}" style="min-height:52px;border:2px solid {{ cd.border }};background:{{ cd.bg }};color:var(--fg);border-radius:8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px">
+                      <span style="font:700 12px 'IBM Plex Mono',monospace;color:var(--muted)">{{ cd.glyph }}</span>
+                      <span style="font-weight:600;font-size:14px">{{ cd.label }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+                <sc-if value="{{ editing.isFlat }}" hint-placeholder-val="{{ false }}">
+                  <label style="display:flex;gap:10px;align-items:center;min-height:44px;cursor:pointer">
+                    <input type="checkbox" checked="{{ editing.sidewall }}" onChange="{{ editing.onSidewall }}" style="width:20px;height:20px;accent-color:var(--warn)"></input>
+                    <span style="font-size:14px">Kebocoran di dinding samping ban</span>
+                  </label>
+                </sc-if>
+                <span style="font-size:13px;color:var(--muted)">Setelah ditandai, geser ban dari rak ke roda ini. Teknisi mengangkat mobil hanya di titik dongkrak resmi karena baterai ada di bawah lantai.</span>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ ch.connected }}" hint-placeholder-val="{{ false }}">
+              <div style="border:2px solid var(--volt);background:var(--surface);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px;animation:rise .25s ease-out">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+                  <strong style="font:700 17px 'Archivo',sans-serif">Charging portable · <span style="font-family:'IBM Plex Mono',monospace;color:var(--volt)">{{ ch.connector }}</span></strong>
+                  <button onClick="{{ ch.onRemove }}" style="min-height:40px;padding:0 12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer;font-size:13px">Lepas colokan</button>
+                </div>
+                <div role="radiogroup" aria-label="Model layanan" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">
+                  <sc-for list="{{ ch.modes }}" as="m" hint-placeholder-count="2">
+                    <button role="radio" aria-checked="{{ m.active }}" onClick="{{ m.onClick }}" style="min-height:52px;padding:8px 12px;border:2px solid {{ m.border }};background:{{ m.bg }};color:var(--fg);border-radius:8px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px">
+                      <span style="font-weight:600;font-size:14px">{{ m.label }}</span>
+                      <span style="font:500 12px 'IBM Plex Mono',monospace;color:var(--muted)">{{ m.fee }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="display:flex;justify-content:space-between;font-size:14px"><span>Baterai sekarang <span style="color:var(--muted)">(SOC)</span></span><span style="font:600 14px 'IBM Plex Mono',monospace">{{ ch.socNow }}%</span></span>
+                    <input type="range" min="0" max="95" step="5" value="{{ ch.socNow }}" onChange="{{ ch.onNow }}" aria-label="Baterai sekarang dalam persen" style="width:100%;min-height:32px"></input>
+                  </label>
+                  <label style="display:flex;flex-direction:column;gap:6px">
+                    <span style="display:flex;justify-content:space-between;font-size:14px"><span>Target</span><span style="font:600 14px 'IBM Plex Mono',monospace">{{ ch.socTarget }}%</span></span>
+                    <input type="range" min="10" max="100" step="5" value="{{ ch.socTarget }}" onChange="{{ ch.onTarget }}" aria-label="Target baterai dalam persen" style="width:100%;min-height:32px"></input>
+                  </label>
+                </div>
+                <div aria-hidden="true" style="display:flex;align-items:center;gap:4px">
+                  <div style="position:relative;flex:1;height:26px;border:2px solid var(--fg);border-radius:6px;overflow:hidden;background:var(--sunk)">
+                    <div style="position:absolute;left:0;top:0;bottom:0;width:{{ ch.targetW }};background:var(--volt);transition:width .9s ease-out"></div>
+                    <div style="position:absolute;left:0;top:0;bottom:0;width:{{ ch.nowW }};background:color-mix(in oklab,var(--volt) 40%,var(--fg));transition:width .3s"></div>
+                  </div>
+                  <div style="width:5px;height:12px;background:var(--fg);border-radius:0 2px 2px 0"></div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+                  <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;color:var(--muted)">Estimasi energi</span><span style="font:600 16px 'IBM Plex Mono',monospace">{{ ch.kwh }} kWh</span></div>
+                  <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;color:var(--muted)">Biaya energi</span><span style="font:600 16px 'IBM Plex Mono',monospace">{{ ch.energyCost }}</span></div>
+                  <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;color:var(--muted)">Durasi</span><span style="font:600 16px 'IBM Plex Mono',monospace">{{ ch.duration }}</span></div>
+                </div>
+                <span style="font-size:13px;color:var(--muted)">Biaya energi final mengikuti kWh aktual di struk SPKLU/charger.</span>
+              </div>
+            </sc-if>
+          </div>
+
+          <aside id="ringkasan" aria-label="Ringkasan rakitan" style="order:{{ summaryOrder }};position:{{ summaryPos }};top:84px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0;scroll-margin-top:80px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline">
+                <span style="font:700 16px 'Archivo',sans-serif">Siap Jalan</span>
+                <span style="font:800 24px 'Archivo',sans-serif;color:{{ readyColor }}">{{ readyPct }}%</span>
+              </div>
+              <div role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ readyPct }}" aria-label="Meter siap jalan" style="height:12px;background:var(--sunk);border-radius:6px;overflow:hidden;border:1px solid var(--line)">
+                <div style="height:100%;width:{{ readyW }};background:{{ readyColor }};transition:width .5s ease-out"></div>
+              </div>
+              <span style="font-size:13px;color:var(--muted);line-height:1.4">{{ readyText }}</span>
+            </div>
+            <div style="border-top:1px dashed var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px">
+              <sc-if value="{{ noLines }}" hint-placeholder-val="{{ true }}">
+                <span style="font-size:14px;color:var(--muted)">Belum ada layanan. Pasang ban atau colokan untuk melihat rincian harga.</span>
+              </sc-if>
+              <sc-for list="{{ quoteLines }}" as="l" hint-placeholder-count="0">
+                <div style="display:flex;justify-content:space-between;gap:12px;font-size:13px;line-height:1.35">
+                  <span>{{ l.label }}</span><span style="font-family:'IBM Plex Mono',monospace;white-space:nowrap;color:{{ l.color }}">{{ l.amountText }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ pairHint }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:13px;line-height:1.4;padding:8px 10px;border-radius:6px;background:color-mix(in oklab,var(--accent) 14%,var(--surface))">Sebaiknya ganti sepasang (satu as) supaya tapak dan cengkeraman seimbang. Ini saran, bukan syarat.</span>
+            </sc-if>
+            <div style="border-top:2px solid var(--fg);padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
+              <span style="font-weight:600">Total</span>
+              <span style="font:800 22px 'Archivo',sans-serif">{{ totalText }}</span>
+            </div>
+            <button onClick="{{ goCheckout }}" style="min-height:50px;border:2px solid var(--ink);background:{{ ctaBg }};color:var(--ink);border-radius:8px;cursor:pointer;font:700 16px 'Archivo',sans-serif">Lanjut ke pesanan</button>
+            <span style="font-size:12px;color:var(--muted);line-height:1.4">Harga tampil sebelum bayar. Perubahan harga di lokasi wajib kamu setujui dulu.</span>
+          </aside>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showCheckout }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:760px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:18px">
+        <ol aria-label="Langkah pemesanan" style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px">
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+            <li aria-current="{{ st.current }}" style="display:flex;flex-direction:column;gap:6px">
+              <div style="height:6px;border-radius:3px;background:{{ st.bar }}"></div>
+              <span style="font-size:13px;font-weight:{{ st.weight }};color:{{ st.color }}"><span style="font-family:'IBM Plex Mono',monospace">{{ st.n }}</span> {{ st.label }}</span>
+            </li>
+          </sc-for>
+        </ol>
+
+        <sc-if value="{{ step1 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <h3 style="margin:0;font:800 26px 'Archivo',sans-serif">Tinjau rakitan</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;align-items:start">
+              <div style="background:var(--sunk);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px">
+                <svg viewBox="0 0 400 150" style="width:100%;height:auto" aria-hidden="true"><path d="{{ car.body }}" fill="var(--surface)" stroke="var(--fg)" stroke-width="2.5" stroke-linejoin="round"></path><path d="{{ car.win }}" fill="var(--sunk)" stroke="var(--fg)" stroke-width="2"></path><circle cx="95" cy="112" r="28" fill="#1b232d" stroke="{{ review.frontStroke }}" stroke-width="5"></circle><circle cx="305" cy="112" r="28" fill="#1b232d" stroke="{{ review.rearStroke }}" stroke-width="5"></circle></svg>
+                <strong style="font:700 17px 'Archivo',sans-serif">{{ review.vehicle }}</strong>
+                <span style="font:500 13px 'IBM Plex Mono',monospace;color:var(--muted)">{{ review.spec }}</span>
+                <sc-for list="{{ review.items }}" as="ri" hint-placeholder-count="2">
+                  <span style="font-size:14px;display:flex;gap:8px"><span style="color:var(--good);font-weight:700">✓</span>{{ ri }}</span>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <sc-for list="{{ quoteLines }}" as="l" hint-placeholder-count="3">
+                  <div style="display:flex;justify-content:space-between;gap:12px;font-size:14px;line-height:1.35"><span>{{ l.label }}</span><span style="font-family:'IBM Plex Mono',monospace;white-space:nowrap;color:{{ l.color }}">{{ l.amountText }}</span></div>
+                </sc-for>
+                <div style="border-top:2px solid var(--fg);padding-top:8px;display:flex;justify-content:space-between;font-weight:700"><span>Total sementara</span><span style="font-family:'IBM Plex Mono',monospace">{{ totalText }}</span></div>
+                <span style="font-size:12px;color:var(--muted)">Biaya zona dan tarif malam dihitung setelah lokasi dan jadwal dipilih.</span>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ step2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <h3 style="margin:0;font:800 26px 'Archivo',sans-serif">Lokasi &amp; jadwal</h3>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <span style="font-size:14px;font-weight:600">Zona layanan</span>
+              <div role="radiogroup" aria-label="Zona" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px">
+                <sc-for list="{{ zoneOpts }}" as="z" hint-placeholder-count="4">
+                  <button role="radio" aria-checked="{{ z.active }}" onClick="{{ z.onClick }}" style="min-height:52px;padding:8px 12px;border:2px solid {{ z.border }};background:{{ z.bg }};color:var(--fg);border-radius:8px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">{{ z.label }}</span><span style="font:500 12px 'IBM Plex Mono',monospace;color:var(--muted)">{{ z.note }}</span></button>
+                </sc-for>
+              </div>
+              <sc-if value="{{ errors.zoneId }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.zoneId }}</span></sc-if>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Alamat detail</span>
+              <textarea value="{{ form.address }}" onChange="{{ on.address }}" rows="2" placeholder="Nama jalan, gedung, nomor" style="min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Sans',sans-serif;width:100%;box-sizing:border-box;resize:vertical"></textarea>
+              <sc-if value="{{ errors.address }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.address }}</span></sc-if>
+            </label>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px">
+              <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Patokan <span style="font-weight:400;color:var(--muted)">(opsional)</span></span>
+                <input value="{{ form.landmark }}" onChange="{{ on.landmark }}" placeholder="mis. basement B2, dekat lift" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Sans',sans-serif;width:100%;box-sizing:border-box"></input></label>
+              <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Pin lokasi <span style="font-weight:400;color:var(--muted)">(opsional)</span></span>
+                <input value="{{ form.pin }}" onChange="{{ on.pin }}" placeholder="Koordinat atau tautan peta" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Mono',monospace;width:100%;box-sizing:border-box"></input></label>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:14px;font-weight:600">Kapan?</span>
+              <div role="radiogroup" aria-label="Jenis jadwal" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+                <sc-for list="{{ schedOpts }}" as="so" hint-placeholder-count="2">
+                  <button role="radio" aria-checked="{{ so.active }}" onClick="{{ so.onClick }}" style="min-height:52px;padding:8px 12px;border:2px solid {{ so.border }};background:{{ so.bg }};color:var(--fg);border-radius:8px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">{{ so.label }}</span><span style="font-size:12px;color:var(--muted)">{{ so.note }}</span></button>
+                </sc-for>
+              </div>
+            </div>
+            <sc-if value="{{ isScheduled }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <label style="display:flex;flex-direction:column;gap:4px;max-width:260px"><span style="font-size:14px;font-weight:600">Tanggal</span>
+                  <input type="date" min="{{ today }}" value="{{ form.date }}" onChange="{{ on.date }}" style="min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Mono',monospace;width:100%;box-sizing:border-box"></input></label>
+                <sc-if value="{{ errors.date }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.date }}</span></sc-if>
+                <span style="font-size:14px;font-weight:600">Slot 2 jam <span style="font-weight:400;color:var(--muted)">· jam operasional 06.00–22.00</span></span>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px">
+                  <sc-for list="{{ slotOpts }}" as="sl" hint-placeholder-count="8">
+                    <button onClick="{{ sl.onClick }}" disabled="{{ sl.disabled }}" aria-pressed="{{ sl.active }}" style="min-height:44px;border:2px solid {{ sl.border }};background:{{ sl.bg }};color:var(--fg);border-radius:8px;cursor:pointer;font:500 13px 'IBM Plex Mono',monospace;opacity:{{ sl.op }}">{{ sl.label }}</button>
+                  </sc-for>
+                </div>
+                <sc-if value="{{ errors.slot }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.slot }}</span></sc-if>
+              </div>
+            </sc-if>
+            <sc-if value="{{ isValet }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+                <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Jam jemput (valet)</span>
+                  <input type="time" min="06:00" max="22:00" value="{{ form.pickup }}" onChange="{{ on.pickup }}" style="min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Mono',monospace;width:100%;box-sizing:border-box"></input>
+                  <sc-if value="{{ errors.pickup }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.pickup }}</span></sc-if></label>
+                <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Jam kembali</span>
+                  <input type="time" min="06:00" max="22:00" value="{{ form.ret }}" onChange="{{ on.ret }}" style="min-height:44px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Mono',monospace;width:100%;box-sizing:border-box"></input>
+                  <sc-if value="{{ errors.ret }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.ret }}</span></sc-if></label>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ step3 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <h3 style="margin:0;font:800 26px 'Archivo',sans-serif">Data kontak</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+              <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Nama</span>
+                <input value="{{ form.name }}" onChange="{{ on.name }}" autocomplete="name" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Sans',sans-serif;width:100%;box-sizing:border-box"></input>
+                <sc-if value="{{ errors.name }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.name }}</span></sc-if></label>
+              <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Nomor WhatsApp</span>
+                <input value="{{ form.wa }}" onChange="{{ on.wa }}" inputmode="tel" autocomplete="tel" placeholder="08… atau +62…" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Mono',monospace;width:100%;box-sizing:border-box"></input>
+                <sc-if value="{{ errors.wa }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.wa }}</span></sc-if></label>
+              <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Email <span style="font-weight:400;color:var(--muted)">(opsional)</span></span>
+                <input type="email" value="{{ form.email }}" onChange="{{ on.email }}" autocomplete="email" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Sans',sans-serif;width:100%;box-sizing:border-box"></input>
+                <sc-if value="{{ errors.email }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.email }}</span></sc-if></label>
+              <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Plat nomor</span>
+                <input value="{{ form.plate }}" onChange="{{ on.plate }}" placeholder="B 1234 XYZ" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Mono',monospace;width:100%;box-sizing:border-box;text-transform:uppercase"></input>
+                <sc-if value="{{ errors.plate }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.plate }}</span></sc-if></label>
+              <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Merek/model mobil <span style="font-weight:400;color:var(--muted)">(opsional)</span></span>
+                <input value="{{ form.model }}" onChange="{{ on.model }}" style="min-height:44px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Sans',sans-serif;width:100%;box-sizing:border-box"></input></label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:4px"><span style="font-size:14px;font-weight:600">Catatan untuk teknisi <span style="font-weight:400;color:var(--muted)">(opsional)</span></span>
+              <textarea value="{{ form.note }}" onChange="{{ on.note }}" rows="2" style="min-height:64px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);font:16px 'IBM Plex Sans',sans-serif;width:100%;box-sizing:border-box;resize:vertical"></textarea></label>
+            <label style="display:flex;gap:10px;align-items:flex-start;min-height:44px;cursor:pointer">
+              <input type="checkbox" checked="{{ form.agree }}" onChange="{{ on.agree }}" style="width:20px;height:20px;margin-top:2px;flex:0 0 auto;accent-color:var(--volt)"></input>
+              <span style="font-size:14px;line-height:1.45">Saya setuju dengan <a href="#syarat">syarat &amp; ketentuan</a> dan <a href="#privasi">kebijakan privasi</a> Bantrum, termasuk pemrosesan data pribadi sesuai UU PDP.</span>
+            </label>
+            <sc-if value="{{ errors.agree }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.agree }}</span></sc-if>
+            <label style="display:flex;gap:10px;align-items:flex-start;min-height:44px;cursor:pointer">
+              <input type="checkbox" checked="{{ form.optin }}" onChange="{{ on.optin }}" style="width:20px;height:20px;margin-top:2px;flex:0 0 auto;accent-color:var(--volt)"></input>
+              <span style="font-size:14px;line-height:1.45;color:var(--muted)">Kirim pengingat servis via WhatsApp (opsional).</span>
+            </label>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ step4 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <h3 style="margin:0;font:800 26px 'Archivo',sans-serif">Pembayaran &amp; konfirmasi</h3>
+              <span style="font:500 12px 'IBM Plex Mono',monospace;padding:3px 8px;border:1px dashed var(--muted);border-radius:4px;color:var(--muted)">Mode demo</span>
+            </div>
+            <div role="radiogroup" aria-label="Metode pembayaran" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px">
+              <sc-for list="{{ methodOpts }}" as="mo" hint-placeholder-count="4">
+                <button role="radio" aria-checked="{{ mo.active }}" onClick="{{ mo.onClick }}" style="min-height:56px;padding:8px 12px;border:2px solid {{ mo.border }};background:{{ mo.bg }};color:var(--fg);border-radius:8px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px"><span style="font-weight:600;font-size:14px">{{ mo.label }}</span><span style="font-size:12px;color:var(--muted)">{{ mo.note }}</span></button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ errors.method }}" hint-placeholder-val="{{ false }}"><span role="alert" style="font-size:13px;color:var(--warn)">! {{ errors.method }}</span></sc-if>
+            <div style="background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:13px;color:var(--muted)">{{ finalMeta }}</span>
+              <sc-for list="{{ quoteLines }}" as="l" hint-placeholder-count="3">
+                <div style="display:flex;justify-content:space-between;gap:12px;font-size:14px"><span>{{ l.label }}</span><span style="font-family:'IBM Plex Mono',monospace;white-space:nowrap;color:{{ l.color }}">{{ l.amountText }}</span></div>
+              </sc-for>
+              <div style="border-top:2px solid var(--fg);padding-top:8px;display:flex;justify-content:space-between;align-items:baseline"><span style="font-weight:700">Total</span><span style="font:800 22px 'Archivo',sans-serif">{{ totalText }}</span></div>
+              <sc-if value="{{ hasCharging }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:var(--muted)">Biaya energi final mengikuti kWh aktual di struk SPKLU/charger.</span></sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:16px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button onClick="{{ backStep }}" style="min-height:48px;padding:0 16px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer;font-weight:600">{{ backLabel }}</button>
+            <sc-if value="{{ step1 }}" hint-placeholder-val="{{ false }}">
+              <button onClick="{{ editBuild }}" style="min-height:48px;padding:0 16px;border:1px solid var(--volt);background:var(--surface);color:var(--volt);border-radius:8px;cursor:pointer;font-weight:600">Ubah rakitan</button>
+            </sc-if>
+          </div>
+          <button onClick="{{ nextStep }}" disabled="{{ paying }}" style="min-height:48px;padding:0 20px;border:2px solid var(--ink);background:var(--accent);color:var(--ink);border-radius:8px;cursor:pointer;font:700 16px 'Archivo',sans-serif;opacity:{{ payOp }}">{{ nextLabel }}</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+      <div style="max-width:760px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:20px">
+        <div aria-hidden="true" style="background:var(--sunk);border-radius:12px;padding:12px;overflow:hidden">
+          <svg viewBox="0 0 400 150" style="width:60%;max-width:300px;height:auto;display:block;animation:driveout 1.4s ease-in .3s forwards"><path d="{{ car.body }}" fill="var(--surface)" stroke="var(--fg)" stroke-width="2.5" stroke-linejoin="round"></path><path d="{{ car.win }}" fill="var(--sunk)" stroke="var(--fg)" stroke-width="2"></path><circle cx="95" cy="112" r="28" fill="#1b232d" stroke="var(--good)" stroke-width="4"></circle><circle cx="305" cy="112" r="28" fill="#1b232d" stroke="var(--good)" stroke-width="4"></circle></svg>
+        </div>
+        <div role="status" style="display:flex;flex-direction:column;gap:10px">
+          <span style="font:600 13px 'IBM Plex Mono',monospace;color:var(--good)">✓ PEMBAYARAN DEMO BERHASIL</span>
+          <h3 style="margin:0;font:800 clamp(26px,4vw,34px)/1.1 'Archivo',sans-serif;text-wrap:balance">{{ done.headline }}</h3>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px;border:2px dashed var(--fg);border-radius:10px">
+          <span style="font-size:14px;color:var(--muted)">Kode pesanan</span>
+          <span id="order-code" style="font:600 22px 'IBM Plex Mono',monospace;user-select:all;letter-spacing:.04em">{{ done.code }}</span>
+          <button onClick="{{ copyCode }}" style="min-height:44px;padding:0 14px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer;font-weight:600">{{ copyLabel }}</button>
+        </div>
+        <dl style="margin:0;display:grid;grid-template-columns:minmax(90px,auto) minmax(0,1fr);gap:8px 16px;font-size:15px">
+          <sc-for list="{{ done.rows }}" as="r" hint-placeholder-count="5">
+            <dt style="color:var(--muted)">{{ r.k }}</dt><dd style="margin:0">{{ r.v }}</dd>
+          </sc-for>
+        </dl>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <strong style="font:700 18px 'Archivo',sans-serif">Apa yang terjadi selanjutnya</strong>
+          <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.45">
+            <li>{{ done.step1 }}</li>
+            <li>Teknisi ditugaskan, tautan pelacakan dikirim.</li>
+            <li>Pengerjaan dengan foto sebelum–sesudah.</li>
+            <li>Laporan digital + permintaan rating ≤ 2 jam setelah selesai.</li>
+          </ol>
+        </div>
+        <div style="font-size:14px;color:var(--muted)">WhatsApp Bantrum: <span style="font-family:'IBM Plex Mono',monospace;color:var(--fg);user-select:all">0812-0000-0000</span> · <a href="https://wa.me/6281200000000" target="_blank" rel="noopener">buka WhatsApp</a></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button onClick="{{ saveSummary }}" style="min-height:48px;padding:0 16px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;cursor:pointer;font-weight:600">Simpan ringkasan</button>
+          <button onClick="{{ newOrder }}" style="min-height:48px;padding:0 18px;border:2px solid var(--ink);background:var(--accent);color:var(--ink);border-radius:8px;cursor:pointer;font:700 16px 'Archivo',sans-serif">Rakit pesanan lain</button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="cara-kerja" aria-labelledby="cara-title" style="scroll-margin-top:72px;max-width:1200px;margin:0 auto;padding:56px 20px;display:flex;flex-direction:column;gap:24px">
+  <h2 id="cara-title" style="margin:0;font:800 clamp(28px,3.6vw,38px)/1.1 'Archivo',sans-serif;letter-spacing:-0.02em">Cara kerja</h2>
+  <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+    <li style="border-top:3px solid var(--fg);padding-top:14px;display:flex;flex-direction:column;gap:8px"><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--muted)">01</span><strong style="font:700 19px 'Archivo',sans-serif">Rakit</strong><span style="color:var(--muted);line-height:1.5;font-size:15px">Pilih mobil, pasang ban dan colokan di layar. Harga muncul per baris.</span></li>
+    <li style="border-top:3px solid var(--fg);padding-top:14px;display:flex;flex-direction:column;gap:8px"><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--muted)">02</span><strong style="font:700 19px 'Archivo',sans-serif">Bayar</strong><span style="color:var(--muted);line-height:1.5;font-size:15px">Pilih lokasi dan jadwal, lalu bayar lewat VA, QRIS, e-wallet, atau kartu.</span></li>
+    <li style="border-top:3px solid var(--fg);padding-top:14px;display:flex;flex-direction:column;gap:8px"><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--muted)">03</span><strong style="font:700 19px 'Archivo',sans-serif">Teknisi datang &amp; bisa dilacak</strong><span style="color:var(--muted);line-height:1.5;font-size:15px">Tautan pelacakan dikirim via WhatsApp begitu teknisi berangkat.</span></li>
+    <li style="border-top:3px solid var(--accent);padding-top:14px;display:flex;flex-direction:column;gap:8px"><span style="font:600 14px 'IBM Plex Mono',monospace;color:var(--muted)">04</span><strong style="font:700 19px 'Archivo',sans-serif">Laporan digital</strong><span style="color:var(--muted);line-height:1.5;font-size:15px">Foto sebelum–sesudah dan rincian pekerjaan, paling lambat 2 jam setelah selesai.</span></li>
+  </ol>
+</section>
+
+<section aria-labelledby="kenapa-title" style="background:var(--ink);color:#e6ecf2">
+  <div style="max-width:1200px;margin:0 auto;padding:56px 20px;display:flex;flex-direction:column;gap:24px">
+    <h2 id="kenapa-title" style="margin:0;font:800 clamp(28px,3.6vw,38px)/1.1 'Archivo',sans-serif;letter-spacing:-0.02em">Kenapa Bantrum</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px">
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="width:14px;height:14px;background:#f2b928;transform:rotate(45deg)"></span><strong style="font:700 19px 'Archivo',sans-serif">Teknisi terlatih tegangan tinggi</strong><span style="line-height:1.5;color:#b7c3cf;font-size:15px">Paham sistem baterai dan kelistrikan EV, termasuk prosedur aman sebelum mengangkat mobil.</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="width:14px;height:14px;background:#f2b928;transform:rotate(45deg)"></span><strong style="font:700 19px 'Archivo',sans-serif">Dongkrak di titik resmi</strong><span style="line-height:1.5;color:#b7c3cf;font-size:15px">Baterai ada di bawah lantai mobil, jadi dongkrak hanya dipasang di titik yang ditentukan pabrikan.</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px"><span style="width:14px;height:14px;background:#f2b928;transform:rotate(45deg)"></span><strong style="font:700 19px 'Archivo',sans-serif">Foto sebelum–sesudah</strong><span style="line-height:1.5;color:#b7c3cf;font-size:15px">Setiap pekerjaan masuk laporan digital dengan foto, ukuran ban, dan kWh yang terisi.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="harga" aria-labelledby="harga-title" style="scroll-margin-top:72px;max-width:1200px;margin:0 auto;padding:56px 20px;display:flex;flex-direction:column;gap:20px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
+    <h2 id="harga-title" style="margin:0;font:800 clamp(28px,3.6vw,38px)/1.1 'Archivo',sans-serif;letter-spacing:-0.02em">Harga ringkas</h2>
+    <span style="font:500 12px 'IBM Plex Mono',monospace;color:var(--muted)">Harga contoh · belum harga resmi</span>
+  </div>
+  <div style="overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;min-width:560px">
+      <thead><tr style="text-align:left;background:var(--sunk)">
+        <th scope="col" style="padding:12px 14px;font-weight:600">Mobil · ukuran ban</th>
+        <sc-for list="{{ priceCols }}" as="pc" hint-placeholder-count="3"><th scope="col" style="padding:12px 14px;font-weight:600">{{ pc }}</th></sc-for>
+      </tr></thead>
+      <tbody>
+        <sc-for list="{{ priceRows }}" as="pr" hint-placeholder-count="4">
+          <tr style="border-top:1px solid var(--line)">
+            <th scope="row" style="padding:12px 14px;text-align:left;font-weight:500">{{ pr.label }} <span style="font-family:'IBM Plex Mono',monospace;color:var(--muted)">{{ pr.size }}</span></th>
+            <sc-for list="{{ pr.cells }}" as="cell" hint-placeholder-count="3"><td style="padding:12px 14px;font-family:'IBM Plex Mono',monospace">{{ cell }}</td></sc-for>
+          </tr>
+        </sc-for>
+      </tbody>
+    </table>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 24px">
+    <sc-for list="{{ feeRows }}" as="fr" hint-placeholder-count="8">
+      <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px"><span>{{ fr.k }}</span><span style="font-family:'IBM Plex Mono',monospace;white-space:nowrap">{{ fr.v }}</span></div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="faq" aria-labelledby="faq-title" style="scroll-margin-top:72px;max-width:860px;margin:0 auto;padding:24px 20px 64px;display:flex;flex-direction:column;gap:16px">
+  <h2 id="faq-title" style="margin:0;font:800 clamp(28px,3.6vw,38px)/1.1 'Archivo',sans-serif;letter-spacing:-0.02em">FAQ</h2>
+  <div style="display:flex;flex-direction:column;border-top:1px solid var(--line)">
+    <sc-for list="{{ faqs }}" as="q" hint-placeholder-count="8">
+      <details style="border-bottom:1px solid var(--line)">
+        <summary style="cursor:pointer;padding:16px 0;font-weight:600;font-size:16px;min-height:24px">{{ q.q }}</summary>
+        <p style="margin:0 0 16px;line-height:1.55;color:var(--muted);font-size:15px">{{ q.a }}</p>
+      </details>
+    </sc-for>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);background:var(--surface)">
+  <div style="max-width:1200px;margin:0 auto;padding:36px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;font-size:14px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span style="font:800 20px 'Archivo',sans-serif">Bantrum</span>
+      <span style="color:var(--muted)">Siaga ban, siap setrum. Ban panggilan dan charging portable untuk mobil listrik di Jabodetabek.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span style="font-weight:600">Kontak</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span style="font-family:'IBM Plex Mono',monospace;user-select:all">0812-0000-0000</span><button onClick="{{ copyWa }}" style="min-height:36px;padding:0 10px;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;cursor:pointer;font-size:13px">{{ copyWaLabel }}</button></div>
+      <span style="color:var(--muted)">Setiap hari 06.00–22.00</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <span style="font-weight:600">Layanan lain</span>
+      <a href="#inspeksi-baterai">Inspeksi kesehatan baterai EV bekas</a>
+      <a href="#b2b">Untuk armada / B2B</a>
+      <a id="privasi" href="#privasi">Kebijakan privasi</a>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ showBottomBar }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--surface);border-top:2px solid var(--fg);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px">
+    <button onClick="{{ openSummary }}" aria-label="Buka rincian ringkasan" style="flex:1;min-height:48px;border:0;background:transparent;color:var(--fg);cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0;text-align:left">
+      <span style="font:800 19px 'Archivo',sans-serif">{{ totalText }}</span>
+      <span style="font-size:12px;color:var(--muted)">Siap jalan {{ readyPct }}% · lihat rincian</span>
+    </button>
+    <button onClick="{{ goCheckout }}" style="min-height:48px;padding:0 16px;border:2px solid var(--ink);background:{{ ctaBg }};color:var(--ink);border-radius:8px;cursor:pointer;font:700 15px 'Archivo',sans-serif">Lanjut ke pesanan</button>
+  </div>
+</sc-if>
+
+<sc-if value="{{ dragging }}" hint-placeholder-val="{{ false }}">
+  <div aria-hidden="true" style="position:fixed;left:{{ ghost.x }};top:{{ ghost.y }};transform:translate(-50%,-50%) rotate(-4deg);z-index:100;pointer-events:none;padding:8px 12px;background:var(--surface);border:2px solid {{ ghost.color }};border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.18);font-weight:600;font-size:14px;white-space:nowrap">{{ ghost.label }}</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const KEY = 'bantrum.rakitan.v1';
+const WL = { FL: 'Depan Kiri', FR: 'Depan Kanan', RL: 'Belakang Kiri', RR: 'Belakang Kanan' };
+const GEO = {
+  city: { hood: 80, roof: 38, ws: 118, rs: 160, re: 318, rw: 362, deck: 70 },
+  suv: { hood: 70, roof: 26, ws: 112, rs: 156, re: 330, rw: 366, deck: 62 },
+  mpv: { hood: 78, roof: 22, ws: 84, rs: 132, re: 350, rw: 366, deck: 56 },
+  sedan: { hood: 84, roof: 42, ws: 132, rs: 186, re: 276, rw: 330, deck: 78 }
+};
+const fmtRp = n => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n).replace(/\s/g, '');
+const track = (event, props) => console.log('[track]', event, props || {});
+const pad = n => String(n).padStart(2, '0');
+const todayStr = () => { const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; };
+const SLOTS = [6, 8, 10, 12, 14, 16, 18, 20].map(h => ({ start: h, label: `${pad(h)}.00–${pad(h + 2)}.00` }));
+const emptyWheels = () => ({ FL: { cond: 'normal', sidewall: false, item: null }, FR: { cond: 'normal', sidewall: false, item: null }, RL: { cond: 'normal', sidewall: false, item: null }, RR: { cond: 'normal', sidewall: false, item: null } });
+const defaultCharging = () => ({ connected: false, connector: null, mode: 'van', socNow: 15, socTarget: 80 });
+const defaultForm = () => ({ zoneId: '', address: '', landmark: '', pin: '', schedType: 'emergency', date: todayStr(), slot: '', pickup: '', ret: '', name: '', wa: '', email: '', plate: '', model: '', note: '', agree: false, optin: false, method: '' });
+
+function carGeo(id) {
+  const g = GEO[id] || GEO.suv;
+  const px = Math.round((g.rs + g.re) / 2);
+  const x0 = g.ws + 14, y0 = g.hood - 8, x1 = g.rw - 16, y1 = g.deck - 4;
+  return {
+    body: `M24,112 L24,${g.hood + 12} Q26,${g.hood} 46,${g.hood - 2} L${g.ws},${g.hood - 6} L${g.rs},${g.roof} L${g.re},${g.roof} L${g.rw},${g.deck} L368,${g.deck + 4} Q376,${g.deck + 8} 376,${g.deck + 20} L376,112 Z`,
+    win: `M${x0},${y0} L${g.rs + 6},${g.roof + 7} L${g.re - 6},${g.roof + 7} L${x1},${y1} Z`,
+    pillarX: px, pillarY1: g.roof + 7, pillarY2: Math.round(y0 + (px - x0) / (x1 - x0) * (y1 - y0)),
+    lightY: g.hood + 4, tailY: g.deck + 8, portY: g.deck + 16,
+    beam: `M26,${g.hood + 7} L-40,${g.hood - 8} L-40,${g.hood + 26} Z`
+  };
+}
+function tirePrice(t, veh) { return t.kind === 'tire' ? (t.pricePerSize || {})[veh.tireSize] : t.price; }
+function tireCheck(t, w, veh) {
+  if (w.cond === 'normal') return 'Roda ini normal. Ketuk rodanya lalu tandai Bocor atau Ganti dulu.';
+  if (t.kind === 'repair') {
+    if (w.cond !== 'flat') return 'Kit Tambal hanya untuk roda bocor. Roda ini ditandai perlu ganti.';
+    if (w.sidewall) return 'Bocor di dinding samping tidak aman ditambal. Pilih ban pengganti.';
+    if (veh.defaultTire === 'runflat') return 'Ban run-flat yang sudah dipakai kempes tidak boleh ditambal. Sebaiknya ganti ban.';
+    return null;
+  }
+  if (t.kind === 'tire' && !(t.pricePerSize || {})[veh.tireSize]) return `Ukuran tidak cocok. Mobil ini pakai ${veh.tireSize}.`;
+  return null;
+}
+function connCheck(code, veh) { return code === veh.port ? null : `Mobil ini memakai ${veh.port}. Coba colokan yang sesuai.`; }
+function estKwh(veh, now, target) { return Math.max(0, Math.ceil(veh.batteryKwh * (target - now) / 100)); }
+
+function calculateQuote(cfg, cat) {
+  const f = cat.fees, lines = [], veh = cfg.vehicle;
+  const filled = (cfg.wheels || []).filter(w => w.item);
+  let serviceBase = 0;
+  if (veh && filled.length) {
+    lines.push({ label: 'Biaya panggilan teknisi ban', amount: f.tireCallout });
+    serviceBase += f.tireCallout;
+    let installs = 0;
+    filled.forEach(w => {
+      const t = cat.tires.find(x => x.id === w.item), nm = WL[w.wheel];
+      if (t.kind === 'repair') lines.push({ label: `Tambal ban, termasuk jasa · ${nm}`, amount: t.price });
+      else {
+        lines.push({ label: t.kind === 'tire' ? `${t.label} ${veh.tireSize} · ${nm}` : `Ban serep milik sendiri · ${nm}`, amount: tirePrice(t, veh) || 0 });
+        installs++;
+      }
+    });
+    if (installs) {
+      lines.push({ label: `Jasa pasang ban × ${installs} roda`, amount: installs * f.tireInstallPerWheel });
+      lines.push({ label: 'Reset sensor TPMS', amount: f.tpmsReset });
+    }
+  }
+  if (veh && cfg.charging) {
+    const fee = cfg.charging.mode === 'van' ? f.chargingVanVisit : f.chargingValetTrip;
+    lines.push({ label: cfg.charging.mode === 'van' ? 'Kunjungan van charger' : 'Valet antar-jemput ke SPKLU', amount: fee });
+    serviceBase += fee;
+    lines.push({ label: `Energi estimasi ${cfg.charging.estKwh} kWh`, amount: cfg.charging.estKwh * f.energyPerKwh });
+  }
+  const zone = cat.zones.find(z => z.id === cfg.zoneId);
+  if (zone && !zone.inZone && lines.length) lines.push({ label: 'Biaya di luar zona', amount: zone.extraFee || 0 });
+  if (cfg.night && serviceBase) lines.push({ label: `Tambahan malam ${f.nightSurchargePct}%`, amount: Math.round(serviceBase * f.nightSurchargePct / 100) });
+  if (filled.length && cfg.charging && f.comboDiscountPct) lines.push({ label: `Diskon kombo ban + charging`, amount: -Math.round(f.tireCallout * f.comboDiscountPct / 100) });
+  return { lines, total: lines.reduce((a, l) => a + l.amount, 0) };
+}
+
+function submitOrder(order) {
+  // Titik integrasi API sungguhan.
+  return new Promise(res => setTimeout(() => res({ ok: true, order }), 1200));
+}
+
+function runTests(cat) {
+  const suv = cat.vehicles.find(v => v.id === 'suv'), city = cat.vehicles.find(v => v.id === 'city');
+  const tire = [{ wheel: 'FL', cond: 'replace', item: 'silent' }];
+  const chg = { mode: 'van', estKwh: estKwh(city, 15, 80) };
+  const cases = [
+    ['ban saja', { vehicle: suv, wheels: tire, zoneId: 'z1' }, 2160000],
+    ['charging saja', { vehicle: city, wheels: [], charging: chg, zoneId: 'z1' }, 220000],
+    ['kombo', { vehicle: suv, wheels: tire, charging: { mode: 'van', estKwh: 20 }, zoneId: 'z1' }, 2370000],
+    ['di luar zona', { vehicle: suv, wheels: tire, zoneId: 'out' }, 2235000],
+    ['tarif malam', { vehicle: suv, wheels: tire, zoneId: 'z1', night: true }, 2180000]
+  ];
+  const r = cases.map(([n, cfg, exp]) => { const got = calculateQuote(cfg, cat).total; return { test: n, ok: got === exp, got, exp }; });
+  const sedan = cat.vehicles.find(v => v.id === 'sedan'), patch = cat.tires.find(t => t.id === 'patch'), silent = cat.tires.find(t => t.id === 'silent');
+  r.push({ test: 'tambal ditolak di dinding samping', ok: !!tireCheck(patch, { cond: 'flat', sidewall: true }, suv) });
+  r.push({ test: 'ukuran salah ditolak', ok: !!tireCheck(silent, { cond: 'replace' }, city) });
+  r.push({ test: 'tambal run-flat ditolak', ok: !!tireCheck(patch, { cond: 'flat' }, sedan) });
+  r.push({ test: 'konektor salah ditolak', ok: !!connCheck('CCS2', sedan) && !connCheck('GB/T', sedan) });
+  console.log(`[tests] ${r.filter(x => x.ok).length}/${r.length} lulus`);
+  console.table(r);
+}
+
+class Component extends DCLogic {
+  state = {
+    catalog: null, loadState: 'loading', w: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    vehicleId: null, modelText: '', side: 'left', wheels: emptyWheels(), charging: defaultCharging(),
+    rackTab: 'tire', selected: null, drag: null, editWheel: null, portOpen: false,
+    msg: 'Pilih mobilmu dulu untuk mulai merakit.', tone: 'muted',
+    shake: {}, snap: {}, history: [], resume: null, driveKey: 0,
+    mode: 'game', step: 1, form: defaultForm(), errors: {}, paying: false, order: null,
+    copied: false, copiedWa: false, sound: false, theme: null, heroDone: false
+  };
+
+  componentDidMount() {
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    this.onKey = e => {
+      if (e.key === 'Escape' && (this.state.selected || this.state.editWheel)) {
+        this.setState({ selected: null, editWheel: null, portOpen: false });
+        this.say('Dibatalkan.', 'muted');
+      }
+    };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+    try { const raw = localStorage.getItem(KEY); if (raw) { const sv = JSON.parse(raw); if (sv && sv.vehicleId) this.setState({ resume: sv }); } } catch (e) {}
+    try { const t = localStorage.getItem('bantrum.theme'); if (t) { document.documentElement.setAttribute('data-theme', t); this.setState({ theme: t }); } } catch (e) {}
+    this.load();
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey); }
+  componentDidUpdate(pp, ps) {
+    const s = this.state;
+    if (ps.vehicleId !== s.vehicleId || ps.wheels !== s.wheels || ps.charging !== s.charging || ps.modelText !== s.modelText) {
+      try { localStorage.setItem(KEY, JSON.stringify({ vehicleId: s.vehicleId, modelText: s.modelText, wheels: s.wheels, charging: s.charging })); } catch (e) {}
+    }
+    const pct = this.ready().pct;
+    if (pct === 100 && this.lastReady !== 100 && s.mode === 'game') {
+      this.lastReady = 100;
+      track('ready_100');
+      const n = (s.snap.all || 0) + 1;
+      this.setState({ snap: { ...s.snap, all: n }, msg: 'Mobilmu siap jalan. Tinggal pilih jadwal.', tone: 'good' });
+      this.beep(880);
+    } else this.lastReady = pct;
+  }
+
+  load = () => {
+    this.setState({ loadState: 'loading' });
+    fetch('data/catalog.json').then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(c => { this.setState({ catalog: c, loadState: 'ok' }); runTests(c); })
+      .catch(() => this.setState({ loadState: 'error' }));
+  };
+
+  veh() { const c = this.state.catalog; return c && c.vehicles.find(v => v.id === this.state.vehicleId); }
+  say(msg, tone) { this.setState({ msg, tone: tone || 'muted' }); }
+  beep(freq) {
+    if (!this.state.sound) return;
+    try { const ac = this.ac || (this.ac = new (window.AudioContext || window.webkitAudioContext)()); const o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = freq; g.gain.value = 0.05; o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + 0.05); } catch (e) {}
+  }
+  snapshot() { const s = this.state; return { vehicleId: s.vehicleId, wheels: s.wheels, charging: s.charging }; }
+  pushHistory() { this.setState(s => ({ history: [...s.history.slice(-30), this.snapshot()] })); }
+
+  ready() {
+    const s = this.state;
+    const probs = Object.values(s.wheels).filter(w => w.cond !== 'normal');
+    const tasks = probs.length + (s.charging.connected ? 1 : 0);
+    const done = probs.filter(w => w.item).length + (s.charging.connected && s.charging.socTarget > s.charging.socNow ? 1 : 0);
+    return { pct: tasks ? Math.round(done / tasks * 100) : 0, tasks, open: probs.length - probs.filter(w => w.item).length };
+  }
+  isNight() {
+    const f = this.state.form;
+    if (f.schedType === 'emergency') { const h = new Date().getHours(); return h >= 21 || h < 6; }
+    const sl = SLOTS.find(x => x.label === f.slot);
+    return !!sl && sl.start + 2 > 21;
+  }
+  quote(withLocation) {
+    const s = this.state, c = s.catalog, veh = this.veh();
+    if (!c || !veh) return { lines: [], total: 0 };
+    const ch = s.charging;
+    return calculateQuote({
+      vehicle: veh,
+      wheels: Object.keys(s.wheels).map(k => ({ wheel: k, ...s.wheels[k] })),
+      charging: ch.connected ? { mode: ch.mode, estKwh: estKwh(veh, ch.socNow, ch.socTarget) } : null,
+      zoneId: withLocation ? s.form.zoneId : null,
+      night: withLocation ? this.isNight() : false
+    }, c);
+  }
+
+  startDrag = item => e => {
+    if (e.button && e.button !== 0) return;
+    const sx = e.clientX, sy = e.clientY; let moved = false;
+    const move = ev => {
+      if (!moved && Math.hypot(ev.clientX - sx, ev.clientY - sy) < 6) return;
+      moved = true;
+      if (ev.cancelable) ev.preventDefault();
+      this.setState({ drag: { item, x: ev.clientX, y: ev.clientY }, portOpen: item.type === 'conn', editWheel: null });
+    };
+    const up = ev => {
+      window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up); window.removeEventListener('pointercancel', up);
+      if (!moved) return;
+      this.justDragged = true; setTimeout(() => { this.justDragged = false; }, 60);
+      const el = document.elementFromPoint(ev.clientX, ev.clientY);
+      const slot = el && el.closest('[data-slot]');
+      this.setState({ drag: null, portOpen: false });
+      if (slot) this.drop(slot.getAttribute('data-slot'), item);
+      else if (item.type !== 'hero') this.say('Lepas item tepat di roda atau port untuk memasang.', 'muted');
+    };
+    window.addEventListener('pointermove', move, { passive: false });
+    window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+  };
+  pick = item => () => {
+    if (this.justDragged) return;
+    const s = this.state, same = s.selected && s.selected.type === item.type && s.selected.id === item.id;
+    if (same) { this.setState({ selected: null, portOpen: false }); this.say('Pilihan dibatalkan.', 'muted'); return; }
+    this.setState({ selected: item, portOpen: item.type === 'conn', editWheel: null });
+    if (item.type === 'hero') return;
+    this.say(`${item.label} dipilih. Ketuk ${item.type === 'conn' ? 'port pengisian' : 'roda tujuan'}. Tekan Esc untuk batal.`, 'volt');
+  };
+  slotClick = slot => () => {
+    if (this.justDragged) return;
+    const s = this.state;
+    if (s.selected) { const it = s.selected; this.setState({ selected: null, portOpen: false }); this.drop(slot, it); return; }
+    if (slot === 'hero') { this.say('Pilih ban di bawah dulu, lalu ketuk roda ini.', 'muted'); return; }
+    if (slot === 'port') { this.say(s.charging.connected ? 'Colokan sudah tersambung. Atur target baterai di bawah.' : 'Pilih colokan di tab Colokan, lalu ketuk port ini.', 'muted'); if (!s.charging.connected) this.setState({ rackTab: 'conn' }); return; }
+    this.setState({ editWheel: s.editWheel === slot ? null : slot });
+  };
+  reject(slot, msg, kind) {
+    const n = (this.state.shake[slot] || 0) + 1;
+    this.setState(s => ({ shake: { ...s.shake, [slot]: n } }));
+    this.say(msg, 'warn'); this.beep(180);
+    track(kind, { valid: false, slot });
+  }
+  drop(slot, item) {
+    const s = this.state, c = s.catalog;
+    if (item.type === 'hero') {
+      if (slot === 'hero') { this.setState({ heroDone: true, snap: { ...s.snap, hero: 1 } }); this.beep(660); track('tire_dropped', { valid: true, slot: 'hero' }); }
+      return;
+    }
+    if (slot === 'hero') return;
+    const veh = this.veh();
+    if (!veh) { this.say('Pilih mobilmu dulu untuk mulai merakit.', 'warn'); return; }
+    if (slot === 'port') {
+      if (item.type !== 'conn') return this.reject('port', 'Ban dipasang ke roda, bukan ke port pengisian.', 'tire_dropped');
+      const err = connCheck(item.id, veh);
+      if (err) return this.reject('port', err, 'connector_dropped');
+      this.pushHistory();
+      this.setState(st => ({ charging: { ...st.charging, connected: true, connector: item.id }, snap: { ...st.snap, port: (st.snap.port || 0) + 1 } }));
+      this.say(`Colokan ${item.id} tersambung. Pilih model layanan dan atur target baterai.`, 'good'); this.beep(660);
+      track('connector_dropped', { valid: true, connector: item.id });
+      return;
+    }
+    if (item.type !== 'tire') return this.reject(slot, 'Colokan dipasang ke port pengisian, bukan ke roda.', 'connector_dropped');
+    const t = c.tires.find(x => x.id === item.id), w = s.wheels[slot];
+    const err = tireCheck(t, w, veh);
+    if (err) return this.reject(slot, err, 'tire_dropped');
+    this.pushHistory();
+    this.setState(st => ({ wheels: { ...st.wheels, [slot]: { ...st.wheels[slot], item: t.id } }, snap: { ...st.snap, [slot]: (st.snap[slot] || 0) + 1 }, editWheel: null }));
+    this.say(`${t.label}${t.kind === 'tire' ? ' ' + veh.tireSize : ''} terpasang di ${WL[slot]}.`, 'good'); this.beep(660);
+    track('tire_dropped', { valid: true, wheel: slot, item: t.id });
+  }
+  removeWheel = k => () => { this.pushHistory(); this.setState(s => ({ wheels: { ...s.wheels, [k]: { ...s.wheels[k], item: null } } })); this.say(`Item dilepas dari ${WL[k]}.`, 'muted'); };
+  setCond = (k, cond) => () => {
+    this.pushHistory();
+    this.setState(s => ({ wheels: { ...s.wheels, [k]: { cond, sidewall: cond === 'flat' ? s.wheels[k].sidewall : false, item: null } } }));
+    this.say(cond === 'normal' ? `${WL[k]} ditandai normal.` : `${WL[k]} ditandai ${cond === 'flat' ? 'bocor' : 'perlu ganti'}. Geser ban dari rak ke roda ini.`, cond === 'normal' ? 'muted' : 'volt');
+  };
+  toggleSidewall = k => e => {
+    const on = e.target.checked, s = this.state, w = s.wheels[k];
+    const dropPatch = on && w.item === 'patch';
+    this.pushHistory();
+    this.setState({ wheels: { ...s.wheels, [k]: { ...w, sidewall: on, item: dropPatch ? null : w.item } } });
+    if (dropPatch) this.say('Bocor di dinding samping tidak aman ditambal. Pilih ban pengganti.', 'warn');
+  };
+  selectVehicle = id => () => {
+    if (this.state.vehicleId === id) return;
+    this.pushHistory();
+    this.setState(s => ({ vehicleId: id, wheels: emptyWheels(), charging: defaultCharging(), side: 'left', driveKey: s.driveKey + 1, editWheel: null, selected: null, resume: null }));
+    this.say('Ketuk roda untuk menandai Bocor atau Ganti, lalu geser ban ke roda yang bermasalah, atau ketuk ban lalu ketuk rodanya.', 'volt');
+    track('vehicle_selected', { segment: id });
+  };
+  setCharging(patch) { this.setState(s => ({ charging: { ...s.charging, ...patch } })); }
+  undo = () => {
+    const h = this.state.history; if (!h.length) return;
+    const last = h[h.length - 1];
+    this.setState({ ...last, history: h.slice(0, -1), editWheel: null, selected: null });
+    this.say('Langkah terakhir dibatalkan.', 'muted');
+  };
+  reset = () => {
+    if (!this.state.vehicleId) return;
+    this.pushHistory();
+    this.setState({ wheels: emptyWheels(), charging: defaultCharging(), editWheel: null, selected: null });
+    this.say('Rakitan dikosongkan. Mobil tetap terpilih.', 'muted');
+  };
+  quickFill = () => {
+    const s = this.state, c = s.catalog, veh = this.veh();
+    if (!veh) { this.say('Pilih mobilmu dulu, lalu ketuk Isi cepat.', 'warn'); return; }
+    this.pushHistory();
+    const wheels = { ...s.wheels }; let any = false;
+    Object.keys(wheels).forEach(k => {
+      const w = wheels[k]; if (w.cond === 'normal' || w.item) return; any = true;
+      const patch = c.tires.find(t => t.id === 'patch');
+      const id = !tireCheck(patch, w, veh) ? 'patch' : veh.defaultTire;
+      wheels[k] = { ...w, item: id };
+    });
+    const charging = !any && !s.charging.connected ? { ...s.charging, connected: true, connector: veh.port } : s.charging;
+    this.setState({ wheels, charging, snap: { ...s.snap, all: (s.snap.all || 0) + 1 } });
+    this.say(any ? 'Roda bermasalah diisi pilihan yang direkomendasikan.' : `Belum ada roda bermasalah, jadi kami sambungkan charging ${veh.port}. Atur target baterai di bawah.`, 'good');
+    track('quick_fill_used');
+  };
+
+  goGame = () => this.scrollTo('rakit');
+  scrollTo(id) { const el = document.getElementById(id); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 72, behavior: 'smooth' }); }
+  goCheckout = () => {
+    const r = this.ready(), q = this.quote(false);
+    if (!this.veh()) { this.say('Pilih mobilmu dulu untuk mulai merakit.', 'warn'); this.scrollTo('rakit'); return; }
+    if (!q.lines.length) { this.say('Pilih minimal satu layanan: pasang ban atau sambungkan colokan.', 'warn'); this.scrollTo('rakit'); return; }
+    if (r.open) { this.say(`Masih ada ${r.open} roda bermasalah yang belum diisi. Isi atau tandai normal dulu.`, 'warn'); this.scrollTo('rakit'); return; }
+    this.setState(s => ({ mode: 'checkout', step: 1, errors: {}, form: { ...s.form, model: s.form.model || s.modelText } }));
+    track('checkout_step_viewed', { step: 1 });
+    setTimeout(() => this.scrollTo('rakit'), 30);
+  };
+  validate(step) {
+    const f = this.state.form, e = {};
+    if (step === 2) {
+      if (!f.zoneId) e.zoneId = 'Pilih zona layanan.';
+      if (f.address.trim().length < 8) e.address = 'Tulis alamat lengkap, minimal 8 karakter.';
+      if (f.schedType === 'scheduled') { if (!f.date) e.date = 'Pilih tanggal.'; if (!f.slot) e.slot = 'Pilih slot waktu 2 jam.'; }
+      if (this.state.charging.connected && this.state.charging.mode === 'valet') {
+        if (!f.pickup) e.pickup = 'Isi jam jemput.';
+        else if (f.pickup < '06:00' || f.pickup > '22:00') e.pickup = 'Jam jemput harus di jam operasional 06.00–22.00.';
+        if (!f.ret) e.ret = 'Isi jam kembali.';
+        else if (f.pickup && f.ret <= f.pickup) e.ret = 'Jam kembali harus setelah jam jemput.';
+      }
+    }
+    if (step === 3) {
+      if (f.name.trim().length < 2) e.name = 'Tulis nama kamu.';
+      if (!/^(08\d{8,11}|\+628\d{7,11})$/.test(f.wa.replace(/[\s-]/g, ''))) e.wa = 'Nomor WhatsApp harus diawali 08 atau +62, contoh 0812 3456 7890.';
+      if (f.email && !/^\S+@\S+\.\S+$/.test(f.email)) e.email = 'Format email belum benar, contoh nama@email.com.';
+      if (f.plate.trim().length < 3) e.plate = 'Isi plat nomor, contoh B 1234 XYZ.';
+      if (!f.agree) e.agree = 'Centang persetujuan syarat & ketentuan dan kebijakan privasi untuk lanjut.';
+    }
+    if (step === 4 && !f.method) e.method = 'Pilih metode pembayaran.';
+    this.setState({ errors: e });
+    return !Object.keys(e).length;
+  }
+  nextStep = () => {
+    const st = this.state.step;
+    if (!this.validate(st)) return;
+    track('checkout_step_completed', { step: st });
+    if (st < 4) { this.setState({ step: st + 1 }); track('checkout_step_viewed', { step: st + 1 }); setTimeout(() => this.scrollTo('rakit'), 30); return; }
+    this.pay();
+  };
+  backStep = () => { const st = this.state.step; if (st === 1) this.setState({ mode: 'game' }); else this.setState({ step: st - 1, errors: {} }); };
+  editBuild = () => { this.setState({ mode: 'game' }); setTimeout(() => this.scrollTo('rakit'), 30); };
+  makeCode() {
+    const d = new Date();
+    let used = []; try { used = JSON.parse(localStorage.getItem('bantrum.codes') || '[]'); } catch (e) {}
+    let code;
+    do { code = `BTR-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${String(Math.floor(1000 + Math.random() * 9000))}`; } while (used.includes(code));
+    try { localStorage.setItem('bantrum.codes', JSON.stringify([...used, code].slice(-200))); } catch (e) {}
+    return code;
+  }
+  pay = () => {
+    const s = this.state, f = s.form, veh = this.veh(), q = this.quote(true), ch = s.charging;
+    const sl = SLOTS.find(x => x.label === f.slot);
+    const order = {
+      code: this.makeCode(), createdAt: new Date().toISOString(),
+      vehicle: { segment: veh.id, modelText: f.model || undefined, plate: f.plate.toUpperCase() },
+      tires: Object.keys(s.wheels).filter(k => s.wheels[k].item).map(k => ({ wheel: k, condition: s.wheels[k].cond, item: s.wheels[k].item, size: veh.tireSize, sidewallDamage: s.wheels[k].sidewall })),
+      charging: ch.connected ? { mode: ch.mode, connector: ch.connector, socNow: ch.socNow, socTarget: ch.socTarget, estKwh: estKwh(veh, ch.socNow, ch.socTarget) } : undefined,
+      location: { zoneId: f.zoneId, address: f.address, landmark: f.landmark || undefined },
+      schedule: f.schedType === 'emergency' ? { type: 'emergency' } : { type: 'scheduled', slotStart: sl ? `${f.date}T${pad(sl.start)}:00` : undefined, slotEnd: sl ? `${f.date}T${pad(sl.start + 2)}:00` : undefined, returnAt: f.ret || undefined },
+      contact: { name: f.name, whatsapp: f.wa, email: f.email || undefined, note: f.note || undefined, marketingOptIn: f.optin },
+      quote: { lines: q.lines, total: q.total },
+      payment: { method: f.method, status: 'paid_demo' }
+    };
+    this.setState({ paying: true });
+    track('order_submitted', { code: order.code, total: q.total });
+    submitOrder(order).then(res => {
+      this.setState({ paying: false, mode: 'done', order: res.order, copied: false });
+      track('order_succeeded', { code: res.order.code });
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      setTimeout(() => this.scrollTo('rakit'), 30);
+    });
+  };
+  copyText(text, flag, selId) {
+    const ok = () => { this.setState({ [flag]: true }); setTimeout(() => this.setState({ [flag]: false }), 2000); };
+    const fallback = () => { const el = selId && document.getElementById(selId); if (el) { const r = document.createRange(); r.selectNodeContents(el); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); } };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  }
+  summaryText() {
+    const o = this.state.order; if (!o) return '';
+    return [`Bantrum · Pesanan ${o.code}`, `Dibuat: ${new Date(o.createdAt).toLocaleString('id-ID')}`, ...this.doneRows().map(r => `${r.k}: ${r.v}`), '', 'Rincian:', ...o.quote.lines.map(l => `- ${l.label}: ${fmtRp(l.amount)}`), `Total: ${fmtRp(o.quote.total)}`, '', 'WhatsApp Bantrum: 0812-0000-0000'].join('\n');
+  }
+  doneRows() {
+    const s = this.state, o = s.order, c = s.catalog; if (!o || !c) return [];
+    const veh = c.vehicles.find(v => v.id === o.vehicle.segment), zone = c.zones.find(z => z.id === o.location.zoneId);
+    const svc = [o.tires.length ? `Ban (${o.tires.length} roda)` : null, o.charging ? `Charging ${o.charging.mode === 'van' ? 'van' : 'valet'} ${o.charging.connector}` : null].filter(Boolean).join(' + ');
+    const sched = o.schedule.type === 'emergency' ? 'Darurat, secepatnya' : `${s.form.date} · ${s.form.slot}`;
+    return [
+      { k: 'Layanan', v: svc },
+      { k: 'Mobil', v: `${veh.label}${o.vehicle.modelText ? ' · ' + o.vehicle.modelText : ''} · ${o.vehicle.plate}` },
+      { k: 'Lokasi', v: `${zone ? zone.label : ''} · ${o.location.address}${o.location.landmark ? ' (' + o.location.landmark + ')' : ''}` },
+      { k: 'Jadwal', v: sched },
+      { k: 'Total dibayar', v: fmtRp(o.quote.total) }
+    ];
+  }
+
+  renderVals() {
+    const s = this.state, c = s.catalog, veh = this.veh();
+    const isDesktop = s.w >= 1024, isMobile = s.w < 768;
+    const act = s.drag ? s.drag.item : s.selected;
+    const car = carGeo(s.vehicleId);
+    const r = this.ready();
+    const inCheckout = s.mode !== 'game';
+    const q = this.quote(inCheckout);
+    const mix = (v, p) => `color-mix(in oklab, var(${v}) ${p}%, transparent)`;
+
+    let rackItems = [];
+    if (c) {
+      if (s.rackTab === 'tire') {
+        const meta = { patch: ['Untuk roda bocor', 'P'], standard: ['Ban EV harian', ''], silent: ['Peredam busa, lebih senyap', ''], runflat: ['Tetap jalan saat kempes', 'RF'], 'own-spare': ['Kami pasang ban serepmu', 'S'] };
+        rackItems = c.tires.map(t => {
+          const p = veh ? tirePrice(t, veh) : null;
+          const unavailable = veh && t.kind === 'tire' && !p;
+          const sel = s.selected && s.selected.type === 'tire' && s.selected.id === t.id;
+          const item = { type: 'tire', id: t.id, label: t.label };
+          return {
+            key: t.id, label: t.label,
+            sub: t.kind === 'tire' ? (veh ? veh.tireSize : 'ukuran sesuai mobil') : meta[t.id][0],
+            price: !veh ? (t.kind === 'tire' ? 'pilih mobil dulu' : fmtRp(t.price)) : unavailable ? `tidak ada ${veh.tireSize}` : t.kind === 'install' ? `${fmtRp(c.fees.tireInstallPerWheel)} jasa pasang` : fmtRp(p),
+            priceColor: unavailable ? 'var(--warn)' : 'var(--fg)',
+            glyph: meta[t.id][1], iconRadius: t.kind === 'repair' ? '6px' : '50%', iconBg: t.kind === 'repair' ? 'var(--accent)' : '#1b232d',
+            border: sel ? 'var(--accent)' : 'var(--line)', selected: !!sel, op: unavailable ? 0.6 : 1,
+            basis: isDesktop ? 'auto' : '220px',
+            aria: `${t.label}${veh && t.kind === 'tire' ? ' ' + veh.tireSize : ''}. Ketuk untuk memilih, lalu ketuk roda tujuan.`,
+            onClick: this.pick(item), onDrag: this.startDrag(item)
+          };
+        });
+      } else {
+        const sub = { CCS2: 'DC · paling umum', 'Type 2': 'AC', 'GB/T': 'DC · sebagian mobil China', CHAdeMO: 'DC · model lama' };
+        rackItems = c.connectors.map(code => {
+          const sel = s.selected && s.selected.type === 'conn' && s.selected.id === code;
+          const item = { type: 'conn', id: code, label: `Colokan ${code}` };
+          return {
+            key: code, label: code, sub: sub[code] || '', price: veh && veh.port === code ? 'cocok dengan mobilmu' : ' ', priceColor: 'var(--good)',
+            glyph: '', iconRadius: '6px', iconBg: 'var(--volt)', border: sel ? 'var(--volt)' : 'var(--line)', selected: !!sel, op: 1,
+            basis: isDesktop ? 'auto' : '200px', aria: `Colokan ${code}. Ketuk untuk memilih, lalu ketuk port pengisian.`,
+            onClick: this.pick(item), onDrag: this.startDrag(item)
+          };
+        });
+      }
+    }
+
+    const sideIds = s.side === 'left' ? [['FL', '23.75%'], ['RL', '76.25%']] : [['RR', '23.75%'], ['FR', '76.25%']];
+    const condLabel = { normal: 'normal', flat: 'bocor', replace: 'perlu ganti' };
+    const wheelsView = veh ? sideIds.map(([k, left]) => {
+      const w = s.wheels[k], t = w.item && c.tires.find(x => x.id === w.item);
+      let valid = null;
+      if (act && act.type === 'tire') valid = !tireCheck(c.tires.find(x => x.id === act.id), w, veh);
+      if (act && act.type === 'conn') valid = false;
+      const prob = w.cond !== 'normal';
+      const sh = s.shake[k], sn = (s.snap[k] || 0) + (s.snap.all || 0);
+      let anim = 'none';
+      if (sh) anim = `shake-${sh % 2} .4s`; else if (sn) anim = `snap-${sn % 2} .55s ease-out`;
+      if (prob && !w.item && !act && !sh) anim = 'blink 1.4s ease-in-out infinite';
+      return {
+        id: k, left, name: WL[k], editing: s.editWheel === k,
+        bstyle: (prob && !w.item && valid === null) ? 'dashed' : 'solid',
+        bcolor: valid === true ? 'var(--accent)' : w.item ? 'var(--good)' : prob ? 'var(--accent)' : s.editWheel === k ? 'var(--volt)' : mix('--fg', 25),
+        bg: valid === true ? mix('--accent', 35) : 'transparent',
+        op: valid === false ? 0.35 : 1, anim,
+        showBadge: prob || !!w.item,
+        badge: w.item ? '✓' : w.cond === 'flat' ? 'Bocor' : 'Ganti',
+        badgeBg: w.item ? 'var(--good)' : 'var(--accent)', badgeFg: w.item ? '#fff' : 'var(--ink)',
+        hasItem: !!t, itemShort: t ? t.label.replace('Ban ', '') : '', itemPrice: t ? fmtRp(tirePrice(t, veh) || 0) : '',
+        aria: `Roda ${WL[k].toLowerCase()}, status ${condLabel[w.cond]}${w.sidewall ? ', bocor di dinding samping' : ''}, ${t ? 'terpasang ' + t.label : 'kosong'}`,
+        onClick: this.slotClick(k), onRemove: this.removeWheel(k)
+      };
+    }) : [];
+
+    const ch = s.charging;
+    const portValid = act && act.type === 'conn' ? act.id === (veh && veh.port) : act ? false : null;
+    const portSh = s.shake.port;
+    const port = {
+      left: s.side === 'left' ? '86%' : '14%', top: `${(car.portY + 20) / 2}%`,
+      bstyle: 'solid',
+      bcolor: ch.connected ? 'var(--volt)' : portValid === true ? 'var(--accent)' : s.portOpen ? 'var(--volt)' : 'var(--fg)',
+      bg: ch.connected ? 'var(--volt)' : portValid === true ? mix('--accent', 35) : s.portOpen ? mix('--volt', 18) : 'var(--surface)',
+      fg: ch.connected ? '#fff' : 'var(--fg)', op: portValid === false ? 0.35 : 1,
+      anim: portSh ? `shake-${portSh % 2} .4s` : s.snap.port ? `snap-${s.snap.port % 2} .5s ease-out` : 'none',
+      text: ch.connected ? ch.connector : s.portOpen ? 'buka' : 'port',
+      aria: `Port pengisian${veh ? ' ' + veh.port : ''}, ${ch.connected ? 'tersambung ' + ch.connector : 'kosong'}`,
+      onClick: this.slotClick('port')
+    };
+
+    const kwh = veh ? estKwh(veh, ch.socNow, ch.socTarget) : 0;
+    const mins = ch.mode === 'van' ? Math.round(kwh / 20 * 60) : 60 + Math.round(kwh / 50 * 60);
+    const dur = `~${Math.floor(mins / 60) ? Math.floor(mins / 60) + ' j ' : ''}${mins % 60} mnt`;
+    const chView = {
+      connected: ch.connected && !!veh, connector: ch.connector, socNow: ch.socNow, socTarget: ch.socTarget,
+      nowW: `${ch.socNow}%`, targetW: `${ch.socTarget}%`, kwh, energyCost: c ? fmtRp(kwh * c.fees.energyPerKwh) : '', duration: dur,
+      modes: c ? [['van', 'Van datang ke lokasi', c.fees.chargingVanVisit], ['valet', 'Valet antar-jemput ke SPKLU', c.fees.chargingValetTrip]].map(([id, label, fee]) => ({
+        label, fee: fmtRp(fee), active: ch.mode === id, border: ch.mode === id ? 'var(--volt)' : 'var(--line)', bg: ch.mode === id ? mix('--volt', 10) : 'var(--surface)',
+        onClick: () => this.setCharging({ mode: id })
+      })) : [],
+      onNow: e => { const v = +e.target.value; this.setCharging({ socNow: v, socTarget: Math.max(ch.socTarget, Math.min(100, v + 5)) }); },
+      onTarget: e => { const v = +e.target.value; this.setCharging({ socTarget: Math.max(v, ch.socNow + 5) }); },
+      onRemove: () => { this.pushHistory(); this.setCharging({ connected: false, connector: null }); this.say('Colokan dilepas.', 'muted'); }
+    };
+
+    const ew = s.editWheel && s.wheels[s.editWheel];
+    const editing = ew ? {
+      open: true, name: WL[s.editWheel], isFlat: ew.cond === 'flat', sidewall: ew.sidewall, onSidewall: this.toggleSidewall(s.editWheel),
+      conds: [['normal', 'Normal', 'OK'], ['flat', 'Bocor', 'PAKU'], ['replace', 'Ganti', 'AUS']].map(([id, label, glyph]) => ({
+        label, glyph, active: ew.cond === id, border: ew.cond === id ? 'var(--accent)' : 'var(--line)', bg: ew.cond === id ? mix('--accent', 16) : 'var(--surface)', onClick: this.setCond(s.editWheel, id)
+      }))
+    } : { open: false, conds: [] };
+
+    const replaced = k => { const w = s.wheels[k]; return w.item && w.item !== 'patch'; };
+    const pairHint = (replaced('FL') !== replaced('FR')) || (replaced('RL') !== replaced('RR'));
+    const quoteLines = q.lines.map(l => ({ label: l.label, amountText: fmtRp(l.amount), color: l.amount < 0 ? 'var(--good)' : 'var(--fg)' }));
+    const readyText = !veh ? 'Pilih mobil untuk mulai.' : r.pct === 100 ? 'Mobilmu siap jalan. Tinggal pilih jadwal.' : !r.tasks ? 'Tandai roda yang bermasalah atau sambungkan colokan.' : `${r.open ? r.open + ' roda belum diisi. ' : ''}Selesaikan semua masalah untuk mencapai 100%.`;
+
+    const cartCount = Object.values(s.wheels).filter(w => w.item).length + (ch.connected ? 1 : 0);
+    const effDark = s.theme ? s.theme === 'dark' : (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+    const hero = {
+      done: s.heroDone, notDone: !s.heroDone, picked: !!(act && act.type === 'hero'),
+      bstyle: s.heroDone ? 'solid' : 'dashed', bcolor: s.heroDone ? 'var(--good)' : 'var(--accent)',
+      bg: act && act.type === 'hero' ? mix('--accent', 35) : s.heroDone ? '#1b232d' : 'transparent',
+      anim: s.heroDone ? 'snap-0 .55s ease-out' : 'blink 1.4s ease-in-out infinite',
+      badge: s.heroDone ? '✓' : 'Kempes', badgeBg: s.heroDone ? 'var(--good)' : 'var(--accent)',
+      chipBorder: act && act.type === 'hero' ? 'var(--accent)' : 'var(--line)',
+      text: s.heroDone ? 'Pas. Ban Silent/Foam terpasang di roda depan.' : 'Geser ban ke roda yang kempes, atau ketuk ban lalu ketuk rodanya.',
+      textColor: s.heroDone ? 'var(--good)' : 'var(--muted)',
+      aria: s.heroDone ? 'Roda depan, ban terpasang' : 'Roda depan, kempes, kosong',
+      onClick: this.slotClick('hero'), onPick: this.pick({ type: 'hero', id: 'hero', label: 'Ban Silent/Foam' }), onDrag: this.startDrag({ type: 'hero', id: 'hero', label: 'Ban Silent/Foam' })
+    };
+
+    const f = s.form;
+    const on = {};
+    ['address', 'landmark', 'pin', 'date', 'pickup', 'ret', 'name', 'wa', 'email', 'plate', 'model', 'note'].forEach(k => { on[k] = e => { const v = e.target.value; this.setState(st => ({ form: { ...st.form, [k]: v, ...(k === 'date' ? { slot: '' } : {}) } })); }; });
+    ['agree', 'optin'].forEach(k => { on[k] = e => { const v = e.target.checked; this.setState(st => ({ form: { ...st.form, [k]: v } })); }; });
+    const setF = patch => () => this.setState(st => ({ form: { ...st.form, ...patch } }));
+    const opt = (active, color) => ({ active, border: active ? `var(${color || '--accent'})` : 'var(--line)', bg: active ? mix(color || '--accent', 14) : 'var(--surface)' });
+    const nowH = new Date().getHours();
+    const isToday = f.date === todayStr();
+    const stepLabels = ['Tinjau', 'Lokasi & jadwal', 'Kontak', 'Bayar'];
+
+    const priceTires = c ? c.tires.filter(t => t.kind === 'tire') : [];
+    const doneOrder = s.order;
+
+    return {
+      isDesktop, rootPadBottom: isMobile && s.mode === 'game' && veh ? '84px' : '0',
+      themeShort: effDark ? 'Gelap' : 'Terang', themeLabel: effDark ? 'Ganti ke tema terang' : 'Ganti ke tema gelap',
+      toggleTheme: () => { const t = effDark ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', t); try { localStorage.setItem('bantrum.theme', t); } catch (e) {} this.setState({ theme: t }); },
+      cartCount, goGame: this.goGame, hero,
+      isLoading: s.loadState === 'loading', isError: s.loadState === 'error', retryLoad: this.load,
+      showResume: !!s.resume && s.loadState === 'ok' && s.mode === 'game',
+      resumeText: s.resume && c ? (c.vehicles.find(v => v.id === s.resume.vehicleId) || {}).label || '' : '',
+      resumeYes: () => { const sv = s.resume; this.setState({ vehicleId: sv.vehicleId, modelText: sv.modelText || '', wheels: sv.wheels || emptyWheels(), charging: sv.charging || defaultCharging(), resume: null, driveKey: s.driveKey + 1 }); this.say('Rakitanmu dipulihkan.', 'good'); },
+      resumeNo: () => { try { localStorage.removeItem(KEY); } catch (e) {} this.setState({ resume: null }); },
+      showGame: s.loadState === 'ok' && s.mode === 'game', showCheckout: s.loadState === 'ok' && s.mode === 'checkout', showDone: s.mode === 'done' && !!doneOrder,
+      vehicleCards: c ? c.vehicles.map(v => ({ label: v.label, spec: `${v.tireSize} · ${v.port}`, body: carGeo(v.id).body, selected: s.vehicleId === v.id, border: s.vehicleId === v.id ? 'var(--accent)' : 'var(--line)', bg: s.vehicleId === v.id ? mix('--accent', 12) : 'var(--surface)', onClick: this.selectVehicle(v.id) })) : [],
+      modelText: s.modelText, onModelText: e => this.setState({ modelText: e.target.value }),
+      gridCols: isDesktop ? '250px minmax(0,1fr) 300px' : 'minmax(0,1fr)',
+      rackOrder: isDesktop ? 0 : 1, stageOrder: isDesktop ? 1 : 0, summaryOrder: 2, summaryPos: isDesktop ? 'sticky' : 'static',
+      rackDir: isDesktop ? 'column' : 'row', rackOverflow: isDesktop ? 'visible' : 'auto',
+      rackTabs: [['tire', 'Ban'], ['conn', 'Colokan']].map(([id, label]) => ({ label, active: s.rackTab === id, bg: s.rackTab === id ? 'var(--fg)' : 'transparent', fg: s.rackTab === id ? 'var(--bg)' : 'var(--fg)', onClick: () => this.setState({ rackTab: id }) })),
+      rackItems, rackHint: s.rackTab === 'tire' ? 'Geser ke roda yang ditandai Bocor atau Ganti. Ukuran ban harus sama dengan mobilmu.' : `Geser ke port pengisian mobil.${veh ? ' Mobil ini memakai ' + veh.port + '.' : ''}`,
+      sideTabs: [['left', 'Sisi kiri'], ['right', 'Sisi kanan']].map(([id, label]) => ({ label, active: s.side === id, bg: s.side === id ? 'var(--surface)' : 'transparent', fg: s.side === id ? 'var(--fg)' : 'var(--muted)', onClick: () => this.setState({ side: id, editWheel: null }) })),
+      undo: this.undo, undoDisabled: !s.history.length, undoOp: s.history.length ? 1 : 0.5, reset: this.reset, quickFill: this.quickFill,
+      sound: s.sound, soundLabel: s.sound ? 'Suara: on' : 'Suara: off', toggleSound: () => this.setState({ sound: !s.sound }),
+      noVehicle: !veh, hasVehicle: !!veh, stageShake: 'none',
+      driveAnim: `drive-${s.driveKey % 2} .55s ease-out`, carFlip: s.side === 'right' ? 'scaleX(-1)' : 'none',
+      car: { ...car, lightFill: r.pct === 100 ? 'var(--accent)' : 'var(--surface)', beamOp: r.pct === 100 ? 0.35 : 0 },
+      wheelsView, port,
+      msg: s.msg, msgColor: `var(--${s.tone === 'muted' ? 'muted' : s.tone})`, msgIcon: s.tone === 'good' ? '✓' : s.tone === 'warn' ? '!' : 'i',
+      editing, closeEditor: () => this.setState({ editWheel: null }), ch: chView,
+      readyPct: r.pct, readyW: `${r.pct}%`, readyColor: r.pct === 100 ? 'var(--good)' : 'var(--accent)', readyText,
+      noLines: !q.lines.length, quoteLines, pairHint, totalText: fmtRp(q.total), ctaBg: q.lines.length && !r.open ? 'var(--accent)' : 'var(--sunk)',
+      goCheckout: this.goCheckout,
+      showBottomBar: isMobile && s.mode === 'game' && !!veh, openSummary: () => this.scrollTo('ringkasan'),
+      dragging: !!s.drag, ghost: s.drag ? { x: s.drag.x + 'px', y: s.drag.y + 'px', label: s.drag.item.label, color: s.drag.item.type === 'conn' ? 'var(--volt)' : 'var(--accent)' } : { x: '0', y: '0', label: '', color: 'var(--line)' },
+
+      steps: stepLabels.map((label, i) => ({ n: `0${i + 1}`, label, current: s.step === i + 1 ? 'step' : 'false', bar: s.step > i ? (s.step === i + 1 ? 'var(--accent)' : 'var(--good)') : 'var(--sunk)', weight: s.step === i + 1 ? 700 : 500, color: s.step >= i + 1 ? 'var(--fg)' : 'var(--muted)' })),
+      step1: s.step === 1, step2: s.step === 2, step3: s.step === 3, step4: s.step === 4,
+      review: veh ? {
+        vehicle: `${veh.label}${s.modelText ? ' · ' + s.modelText : ''}`, spec: `${veh.tireSize} · ${veh.port} · ${veh.batteryKwh} kWh`,
+        items: [...Object.keys(s.wheels).filter(k => s.wheels[k].item).map(k => `${c.tires.find(t => t.id === s.wheels[k].item).label} · ${WL[k]}`), ...(ch.connected ? [`Charging ${ch.connector} · ${ch.mode === 'van' ? 'van' : 'valet'} · ${ch.socNow}% → ${ch.socTarget}%`] : [])],
+        frontStroke: s.wheels.FL.item || s.wheels.FR.item ? 'var(--good)' : 'var(--fg)', rearStroke: s.wheels.RL.item || s.wheels.RR.item ? 'var(--good)' : 'var(--fg)'
+      } : { items: [] },
+      form: f, on, errors: s.errors, today: todayStr(),
+      zoneOpts: c ? c.zones.map(z => ({ label: z.label, note: z.inZone ? 'tanpa biaya tambahan' : `+${fmtRp(z.extraFee || 0)}`, ...opt(f.zoneId === z.id), onClick: setF({ zoneId: z.id }) })) : [],
+      schedOpts: [['emergency', 'Darurat', 'Secepatnya, konfirmasi ≤ 5 menit'], ['scheduled', 'Terjadwal', 'Pilih tanggal dan slot 2 jam']].map(([id, label, note]) => ({ label, note, ...opt(f.schedType === id), onClick: setF({ schedType: id }) })),
+      isScheduled: f.schedType === 'scheduled', isValet: ch.connected && ch.mode === 'valet',
+      slotOpts: SLOTS.map(sl => { const dis = isToday && sl.start <= nowH; return { label: sl.label, disabled: dis, op: dis ? 0.4 : 1, ...opt(f.slot === sl.label), onClick: setF({ slot: sl.label }) }; }),
+      methodOpts: [['va', 'Virtual Account', 'Transfer bank'], ['qris', 'QRIS', 'Scan dari aplikasi apa pun'], ['ewallet', 'E-wallet', 'Dompet digital'], ['card', 'Kartu', 'Debit/kredit']].map(([id, label, note]) => ({ label, note, ...opt(f.method === id, '--volt'), onClick: setF({ method: id }) })),
+      finalMeta: veh ? `${veh.label} · ${f.schedType === 'emergency' ? 'Darurat' : f.date + ' ' + f.slot}${this.isNight() ? ' · tarif malam' : ''}` : '',
+      hasCharging: ch.connected,
+      backStep: this.backStep, backLabel: s.step === 1 ? 'Kembali ke rakitan' : 'Kembali', editBuild: this.editBuild,
+      nextStep: this.nextStep, paying: s.paying, payOp: s.paying ? 0.6 : 1,
+      nextLabel: s.step < 4 ? 'Lanjut' : s.paying ? 'Memproses pembayaran…' : `Konfirmasi & bayar ${fmtRp(q.total)}`,
+
+      done: doneOrder ? {
+        code: doneOrder.code,
+        headline: `Pesanan ${doneOrder.code} diterima. Kami hubungi via WhatsApp dalam ${doneOrder.schedule.type === 'emergency' ? '5' : '30'} menit.`,
+        rows: this.doneRows(),
+        step1: `Konfirmasi via WhatsApp ≤ ${doneOrder.schedule.type === 'emergency' ? '5' : '30'} menit.`
+      } : { rows: [] },
+      copyLabel: s.copied ? 'Tersalin' : 'Salin kode',
+      copyCode: () => this.copyText(doneOrder.code, 'copied', 'order-code'),
+      copyWaLabel: s.copiedWa ? 'Tersalin' : 'Salin',
+      copyWa: () => this.copyText('081200000000', 'copiedWa'),
+      saveSummary: () => { const b = new Blob([this.summaryText()], { type: 'text/plain' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `${doneOrder.code}.txt`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); },
+      newOrder: () => { this.setState({ mode: 'game', step: 1, order: null, vehicleId: null, wheels: emptyWheels(), charging: defaultCharging(), history: [], form: defaultForm(), errors: {}, msg: 'Pilih mobilmu dulu untuk mulai merakit.', tone: 'muted' }); setTimeout(() => this.scrollTo('rakit'), 30); },
+
+      priceCols: priceTires.map(t => t.label.replace('Ban ', '')),
+      priceRows: c ? c.vehicles.map(v => ({ label: v.label, size: v.tireSize, cells: priceTires.map(t => t.pricePerSize[v.tireSize] ? fmtRp(t.pricePerSize[v.tireSize]) : '—') })) : [],
+      feeRows: c ? [
+        ['Kit Tambal (termasuk jasa)', fmtRp(c.tires.find(t => t.id === 'patch').price)],
+        ['Biaya panggilan teknisi ban', fmtRp(c.fees.tireCallout)],
+        ['Jasa pasang per roda', fmtRp(c.fees.tireInstallPerWheel)],
+        ['Reset sensor TPMS', fmtRp(c.fees.tpmsReset)],
+        ['Kunjungan van charger', fmtRp(c.fees.chargingVanVisit)],
+        ['Valet antar-jemput ke SPKLU', fmtRp(c.fees.chargingValetTrip)],
+        ['Energi per kWh', fmtRp(c.fees.energyPerKwh)],
+        ['Di luar zona', fmtRp((c.zones.find(z => !z.inZone) || {}).extraFee || 0)],
+        ['Tambahan malam (21.00–06.00)', `${c.fees.nightSurchargePct}% biaya layanan`],
+        ['Diskon kombo ban + charging', `${c.fees.comboDiscountPct}% biaya panggilan`]
+      ].map(([k, v]) => ({ k, v })) : [],
+      faqs: [
+        { q: 'Zona layanan mana saja?', a: `Saat ini ${c ? c.zones.filter(z => z.inZone).map(z => z.label).join(', ') : 'Jakarta Selatan, Jakarta Pusat, dan BSD/Tangerang Selatan'}. Wilayah Jabodetabek lain tetap bisa dilayani dengan biaya tambahan di luar zona.` },
+        { q: 'Berapa lama pengerjaannya?', a: 'Tambal ban sekitar 30–45 menit, ganti ban sekitar 20 menit per roda. Lama charging tergantung kWh yang diisi; estimasinya tampil saat kamu mengatur target baterai.' },
+        { q: 'Apakah tambal ban bergaransi?', a: 'Ya, garansi 30 hari untuk kebocoran di titik tambal yang sama.' },
+        { q: 'Bagaimana jika saya membatalkan?', a: 'Pembatalan sebelum teknisi berangkat tidak dikenakan biaya. Setelah teknisi berangkat, biaya panggilan tetap ditagih.' },
+        { q: 'Jenis ban apa yang didukung?', a: 'Ban Standar EV, Silent/Foam, dan Run-flat sesuai ukuran mobilmu, juga pemasangan ban serep milikmu. Bocor di dinding samping dan run-flat yang sudah dipakai kempes tidak ditambal demi keamanan.' },
+        { q: 'Konektor charging apa saja yang didukung?', a: 'CCS2 (paling umum di Indonesia), Type 2 untuk AC, GB/T untuk sebagian mobil China, dan CHAdeMO untuk model lama.' },
+        { q: 'Bisakah harga berubah di lokasi?', a: 'Harga tampil sebelum bayar. Jika teknisi menemukan kebutuhan lain, perubahan harga wajib kamu setujui dulu. Biaya energi final mengikuti kWh aktual di struk.' },
+        { q: 'Apakah aman mengangkat mobil listrik?', a: 'Teknisi kami hanya memakai titik dongkrak resmi karena baterai berada di bawah lantai mobil.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
